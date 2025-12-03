@@ -5,10 +5,12 @@ This project is made with **HTML, CSS, and JavaScript** and includes animations,
 
 ✨ Anyone can use this project to create a unique online birthday greeting for their loved one!  
 
+Inspired by https://github.com/nikitayadav19/HappyBirthdayGF ✨
+
 ---
 
 ## 🚀 Live Demo  
-👉 [Click here to view the site](https://nikitayadav19.github.io/HappyBirthdayGF)  
+👉 [Click here to view the site](https://munai-das.github.io/HappyBirthdayWifey/)  
 
 ---
 
@@ -30,4 +32,4 @@ This project is made with **HTML, CSS, and JavaScript** and includes animations,
 ## 🎉 How to Use  
 1. Clone the repo:  
    ```bash
-   git clone https://github.com/nikitayadav19/HappyBirthdayGF.git
+   git clone git@github.com:munai-das/HappyBirthdayWifey.git

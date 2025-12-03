@@ -2,7 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none;
+}
+
+@media (pointer: fine) {
+    * {
+        cursor: none;
+    }
 }
 
 body {
@@ -43,6 +48,15 @@ h1 {
     opacity: 0;
 }
 
+.subtitle {
+    color: #a166d3;
+    font-size: 1.1rem;
+    margin: 0 auto 1.5rem;
+    max-width: 540px;
+    line-height: 1.6;
+    opacity: 0;
+}
+
 .greeting {
     font-size: 1.5rem;
     color: #8a2be2;
@@ -61,6 +75,12 @@ h1 {
     box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
     transition: transform 0.3s, box-shadow 0.3s;
     opacity: 0;
+}
+
+.cta-button:focus-visible {
+    outline: 3px solid rgba(255, 105, 180, 0.5);
+    outline-offset: 3px;
+    box-shadow: 0 0 25px rgba(255, 105, 180, 0.7);
 }
 
 .cta-button:hover {

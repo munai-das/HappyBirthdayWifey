@@ -264,6 +264,30 @@
             line-height: 1.8;
         }
 
+        .audio-player {
+            position: relative;
+            z-index: 3;
+            max-width: 500px;
+            margin: 2rem auto 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 16px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .audio-player h3 {
+            font-family: 'Dancing Script', cursive;
+            color: #ff69b4;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .audio-player audio {
+            width: 100%;
+            border-radius: 12px;
+        }
+
         .goodbye-btn {
             display: inline-block;
             padding: 1rem 2rem;
@@ -395,6 +419,14 @@
         </div>
 
     </div>
+
+    <section class="audio-player" aria-label="Birthday song">
+        <h3>A Song For You 🎶</h3>
+        <audio controls>
+            <source src="./music.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </section>
 
     <section class="final-message">
         <h2>Thank You for the Memories</h2>

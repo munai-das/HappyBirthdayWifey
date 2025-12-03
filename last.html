@@ -157,73 +157,183 @@
             animation: fadeIn 2s ease 0.5s both;
         }
 
-        /* Enhanced Memory Cards */
-        .memory-container {
-            max-width: 1200px;
+        /* Instagram-style Carousel */
+        .memory-list {
+            max-width: 920px;
             margin: 0 auto;
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            padding: 2rem 1.5rem 3rem;
+            position: relative;
             z-index: 3;
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+
+        .memory-container {
+            padding: 0.5rem;
+        }
+
+        .carousel-card {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 24px;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+            padding: 1.5rem;
+            overflow: hidden;
             position: relative;
         }
 
-        .memory-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 1.5rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        .carousel-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .carousel-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff69b4, #da70d6);
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 1.4rem;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            color: #4a4a4a;
+        }
+
+        .carousel-meta strong {
+            font-size: 1.05rem;
+        }
+
+        .carousel-meta span {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .carousel-date {
+            font-size: 0.9rem;
+            color: #9b59b6;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .carousel-counter {
+            margin-left: auto;
+            font-weight: 700;
+            color: #ff69b4;
+            background: rgba(255, 105, 180, 0.12);
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+        }
+
+        .carousel-window {
             position: relative;
             overflow: hidden;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.08), rgba(230, 230, 250, 0.25));
         }
 
-        .memory-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s ease;
+            width: 100%;
         }
 
-        .memory-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .carousel-slide {
+            min-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            aspect-ratio: 4 / 5;
+        }
+
+        .carousel-slide img {
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transform: translateX(-100%);
-            transition: 0.5s;
-        }
-
-        .memory-card:hover::before {
-            transform: translateX(100%);
-        }
-
-        .memory-img {
-            width: 100%;
-            height: 250px;
             object-fit: cover;
-            border-radius: 15px;
-            margin-bottom: 1rem;
-            transition: transform 0.5s ease;
+            border-radius: 16px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
         }
 
-        .memory-card:hover .memory-img {
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+            color: #ff69b4;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .carousel-btn:hover {
+            background: #ff69b4;
+            color: white;
+        }
+
+        .carousel-btn.prev {
+            left: 14px;
+        }
+
+        .carousel-btn.next {
+            right: 14px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 1rem 0 0.35rem;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid #ff69b4;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: #ff69b4;
             transform: scale(1.05);
+        }
+
+        .carousel-caption-block {
+            margin-top: 0.35rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
         }
 
         .memory-date {
             font-family: 'Dancing Script', cursive;
             color: #ff69b4;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
         }
 
         .memory-caption {
             font-size: 1rem;
-            line-height: 1.5;
-            color: #666;
+            line-height: 1.6;
+            color: #555;
         }
 
         /* Final Message Section */
@@ -372,8 +482,22 @@
                 font-size: 3rem;
             }
 
-            .memory-container {
-                grid-template-columns: 1fr;
+            .memory-list {
+                padding: 1.5rem 1rem 2.5rem;
+                gap: 1.25rem;
+            }
+
+            .carousel-card {
+                padding: 1.25rem;
+            }
+
+            .carousel-slide {
+                aspect-ratio: 1 / 1.2;
+            }
+
+            .carousel-btn {
+                width: 36px;
+                height: 36px;
             }
 
             .final-message h2 {
@@ -399,25 +523,123 @@
         <p>Every moment spent with you has been magical. Let's cherish these precious memories ...</p>
     </section>
 
-    <div class="memory-container">
-        <div class="memory-card">
-            <img src="./d1.jpg" alt="First Date" class="memory-img">
-            <div class="memory-date">Her Smile Says It All</div>
-            <div class="memory-caption">You’re truly one of the sweetest girls I know, and I feel lucky to have a sis
-                like you.❤️</div>
-        </div>
-        <div class="memory-card">
-            <img src="./d2.jpg" alt="Beach Day" class="memory-img">
-            <div class="memory-date">Together Vibes</div>
-            <div class="memory-caption">May your journey ahead be filled with happiness, success, and endless
-                smiles.😊💕</div>
-        </div>
-        <div class="memory-card">
-            <img src="./d3.jpg" alt="Movie Night" class="memory-img">
-            <div class="memory-date">Pretty Soul</div>
-            <div class="memory-caption">Keep being the amazing person you are—you make every moment brighter.🌸💖</div>
+    <div class="memory-list">
+        <div class="memory-container">
+            <div class="carousel-card" aria-label="First memory carousel" data-memory-date="May 6, 2022">
+                <div class="carousel-header">
+                    <div class="carousel-avatar">💕</div>
+                    <div class="carousel-meta">
+                        <strong>Priya's Moments</strong>
+                        <span>Birthday edition</span>
+                        <span class="carousel-date">May 6, 2022</span>
+                    </div>
+                    <div class="carousel-counter" aria-live="polite">1 / 3</div>
+                </div>
+
+                <div class="carousel-window">
+                    <button class="carousel-btn prev" aria-label="Previous memory">‹</button>
+                    <div class="carousel-track">
+                        <div class="carousel-slide" data-date="Her Smile Says It All"
+                            data-caption="You’re truly one of the sweetest girls I know, and I feel lucky to have a sis like you.❤️">
+                            <img src="./d1.jpg" alt="Her Smile Says It All">
+                        </div>
+                        <div class="carousel-slide" data-date="Together Vibes"
+                            data-caption="May your journey ahead be filled with happiness, success, and endless smiles.😊💕">
+                            <img src="./d2.jpg" alt="Together Vibes">
+                        </div>
+                        <div class="carousel-slide" data-date="Pretty Soul"
+                            data-caption="Keep being the amazing person you are—you make every moment brighter.🌸💖">
+                            <img src="./d3.jpg" alt="Pretty Soul">
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" aria-label="Next memory">›</button>
+                </div>
+
+                <div class="carousel-dots" aria-label="Select memory"></div>
+                <div class="carousel-caption-block" aria-live="polite">
+                    <div class="memory-date"></div>
+                    <div class="memory-caption"></div>
+                </div>
+            </div>
         </div>
 
+        <div class="memory-container">
+            <div class="carousel-card" aria-label="Second memory carousel" data-memory-date="November 12, 2023">
+                <div class="carousel-header">
+                    <div class="carousel-avatar">✨</div>
+                    <div class="carousel-meta">
+                        <strong>Cozy Adventures</strong>
+                        <span>Weekend getaways</span>
+                        <span class="carousel-date">November 12, 2023</span>
+                    </div>
+                    <div class="carousel-counter" aria-live="polite">1 / 3</div>
+                </div>
+
+                <div class="carousel-window">
+                    <button class="carousel-btn prev" aria-label="Previous adventure">‹</button>
+                    <div class="carousel-track">
+                        <div class="carousel-slide" data-date="Starlit Drive"
+                            data-caption="We chased the sunset and ended up with a sky full of stars—what a drive.🌠">
+                            <img src="./gif1.gif" alt="Starlit Drive">
+                        </div>
+                        <div class="carousel-slide" data-date="Rainy Cafe Corners"
+                            data-caption="Warm coffee, rainy windows, and conversations that never ended.☕️🌧️">
+                            <img src="./gif2.gif" alt="Rainy Cafe Corners">
+                        </div>
+                        <div class="carousel-slide" data-date="Lazy Sunday Laughs"
+                            data-caption="Comfy clothes, cozy vibes, and laughter that echoed through the room.😂💕">
+                            <img src="./d1.jpg" alt="Lazy Sunday Laughs">
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" aria-label="Next adventure">›</button>
+                </div>
+
+                <div class="carousel-dots" aria-label="Select adventure"></div>
+                <div class="carousel-caption-block" aria-live="polite">
+                    <div class="memory-date"></div>
+                    <div class="memory-caption"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="memory-container">
+            <div class="carousel-card" aria-label="Third memory carousel" data-memory-date="March 2, 2024">
+                <div class="carousel-header">
+                    <div class="carousel-avatar">🌸</div>
+                    <div class="carousel-meta">
+                        <strong>Blooming Days</strong>
+                        <span>Spring snapshots</span>
+                        <span class="carousel-date">March 2, 2024</span>
+                    </div>
+                    <div class="carousel-counter" aria-live="polite">1 / 3</div>
+                </div>
+
+                <div class="carousel-window">
+                    <button class="carousel-btn prev" aria-label="Previous bloom">‹</button>
+                    <div class="carousel-track">
+                        <div class="carousel-slide" data-date="Petal Picnic"
+                            data-caption="Blanket on the grass, petals in the breeze, and you shining brighter than the sun.🌷">
+                            <img src="./d2.jpg" alt="Petal Picnic">
+                        </div>
+                        <div class="carousel-slide" data-date="Garden Giggles"
+                            data-caption="Every joke landed, every flower smiled back at us.🌿😊">
+                            <img src="./d3.jpg" alt="Garden Giggles">
+                        </div>
+                        <div class="carousel-slide" data-date="Twirl Time"
+                            data-caption="You spun around with the blossoms and made the whole park feel alive.🌺✨">
+                            <img src="./d1.jpg" alt="Twirl Time">
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" aria-label="Next bloom">›</button>
+                </div>
+
+                <div class="carousel-dots" aria-label="Select bloom"></div>
+                <div class="carousel-caption-block" aria-live="polite">
+                    <div class="memory-date"></div>
+                    <div class="memory-caption"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <section class="audio-player" aria-label="Birthday song">
@@ -436,6 +658,71 @@
         <p>You deserve all the joy in the world—keep shining and spreading your beautiful energy.✨</p>
         <a href="#" class="goodbye-btn">Until We Meet Again 💝</a>
     </section>
+    <script>
+        (function () {
+            const carousels = document.querySelectorAll('.carousel-card');
+
+            carousels.forEach((carousel) => {
+                const track = carousel.querySelector('.carousel-track');
+                const dotsContainer = carousel.querySelector('.carousel-dots');
+                const captionEl = carousel.querySelector('.memory-caption');
+                const dateEl = carousel.querySelector('.memory-date');
+                const counterEl = carousel.querySelector('.carousel-counter');
+                const prevBtn = carousel.querySelector('.carousel-btn.prev');
+                const nextBtn = carousel.querySelector('.carousel-btn.next');
+                const headerDate = carousel.querySelector('.carousel-date');
+
+                if (!track || !dotsContainer || !prevBtn || !nextBtn) return;
+
+                if (headerDate && carousel.dataset.memoryDate) {
+                    headerDate.textContent = carousel.dataset.memoryDate;
+                }
+
+                const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+                let currentIndex = 0;
+
+                slides.forEach((slide, index) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'carousel-dot';
+                    dot.type = 'button';
+                    dot.setAttribute('aria-label', `Go to memory ${index + 1}`);
+                    dot.addEventListener('click', () => goToSlide(index));
+                    dotsContainer.appendChild(dot);
+                });
+
+                const dots = Array.from(dotsContainer.querySelectorAll('.carousel-dot'));
+
+                function goToSlide(index) {
+                    const total = slides.length;
+                    currentIndex = (index + total) % total;
+                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === currentIndex));
+
+                    const { caption, date } = slides[currentIndex].dataset;
+                    if (dateEl) dateEl.textContent = date;
+                    if (captionEl) captionEl.textContent = caption;
+                    if (counterEl) counterEl.textContent = `${currentIndex + 1} / ${total}`;
+                }
+
+                prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+                nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+                let startX = 0;
+                track.addEventListener('touchstart', (event) => {
+                    startX = event.touches[0].clientX;
+                });
+
+                track.addEventListener('touchend', (event) => {
+                    const diff = event.changedTouches[0].clientX - startX;
+                    if (Math.abs(diff) > 40) {
+                        goToSlide(diff > 0 ? currentIndex - 1 : currentIndex + 1);
+                    }
+                });
+
+                goToSlide(0);
+            });
+        })();
+    </script>
 </body>
 
 </html>

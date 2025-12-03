@@ -245,6 +245,46 @@
             animation: heartbeat 2s infinite;
         }
 
+        /* Music Player */
+        .audio-player {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 5;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 16px;
+            padding: 0.75rem 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: 2px solid #ffb6c1;
+        }
+
+        .audio-toggle {
+            background: linear-gradient(45deg, #ff69b4, #ff9ec7);
+            border: none;
+            color: white;
+            padding: 0.55rem 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 6px 15px rgba(255, 105, 180, 0.35);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .audio-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(255, 105, 180, 0.45);
+        }
+
+        .audio-label {
+            font-size: 0.95rem;
+            color: #cc4c8d;
+            font-weight: 600;
+        }
+
         @keyframes heartbeat {
 
             0%,
@@ -360,6 +400,12 @@
 </head>
 
 <body>
+    <div class="audio-player">
+        <button class="audio-toggle" aria-pressed="false">Play Music 🎵</button>
+        <div class="audio-label">Soft birthday tune ready to play</div>
+        <audio id="birthday-audio" loop preload="none"
+            src="https://cdn.pixabay.com/download/audio/2023/03/01/audio_f694b5a7a0.mp3?filename=happy-birthday-15440.mp3"></audio>
+    </div>
     <div class="magic-sparkles"></div>
     <div class="floating-hearts">
         <!-- Hearts will be generated via CSS -->
@@ -404,6 +450,30 @@
         <p>You deserve all the joy in the world—keep shining and spreading your beautiful energy.✨</p>
         <a href="#" class="goodbye-btn">Until We Meet Again 💝</a>
     </section>
+
+    <script>
+        const audio = document.getElementById('birthday-audio');
+        const audioToggle = document.querySelector('.audio-toggle');
+        const audioLabel = document.querySelector('.audio-label');
+
+        audioToggle.addEventListener('click', async () => {
+            try {
+                if (audio.paused) {
+                    await audio.play();
+                    audioToggle.textContent = 'Pause Music 🎶';
+                    audioToggle.setAttribute('aria-pressed', 'true');
+                    audioLabel.textContent = 'Birthday tune is playing';
+                } else {
+                    audio.pause();
+                    audioToggle.textContent = 'Play Music 🎵';
+                    audioToggle.setAttribute('aria-pressed', 'false');
+                    audioLabel.textContent = 'Soft birthday tune ready to play';
+                }
+            } catch (error) {
+                audioLabel.textContent = 'Press play to start the music';
+            }
+        });
+    </script>
 </body>
 
 </html>

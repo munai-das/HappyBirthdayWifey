@@ -5,21 +5,13 @@ document.addEventListener('mousemove', (e) => {
     cursor.style.top = e.clientY + 'px';
 });
 
-const translations = {
-    en: {
-        title: 'Happy Birthday Priya💗',
-        subtitle: 'I built a tiny wonderland for you — enjoy the sparkles, stories, and surprises waiting inside.',
-        greeting: "Hey You Know What! You're the most adorable human I ever met! 💖",
-        cta: 'Click to Enter Our World 💕',
-        toggleLabel: 'PT-BR 🇧🇷'
-    },
-    pt: {
-        title: 'Feliz Aniversário, Priya💗',
-        subtitle: 'Construí um pequeno mundo para você — aproveite os brilhos, histórias e surpresas que te esperam.',
-        greeting: 'Ei, sabe de uma coisa? Você é a pessoa mais adorável que eu já conheci! 💖',
-        cta: 'Clique para Entrar no Nosso Mundo 💕',
-        toggleLabel: 'EN 🇺🇸'
-    }
+const baseContent = {
+    title: 'Happy Birthday Priya💗',
+    subtitle: 'I built a tiny wonderland for you — enjoy the sparkles, stories, and surprises waiting inside.',
+    greeting: "Hey You Know What! You're the most adorable human I ever met! 💖",
+    cta: 'Click to Enter Our World 💕',
+    toggleLabel: 'PT-BR 🇧🇷',
+    translatedLabel: 'EN 🇺🇸'
 };
 
 const titleElement = document.querySelector('h1');
@@ -28,7 +20,7 @@ const greetingElement = document.querySelector('.greeting');
 const ctaButton = document.querySelector('.cta-button');
 const languageButton = document.querySelector('.language-toggle');
 
-let greetingText = translations.en.greeting;
+let greetingText = baseContent.greeting;
 let charIndex = 0;
 let typingTimeout;
 let currentLanguage = getSavedLanguage('en');
@@ -94,16 +86,33 @@ function startGreeting() {
     typeNext();
 }
 
-function applyLanguage(language, { shouldSave = true } = {}) {
-    const content = translations[language];
-    const nextLanguage = language === 'en' ? 'pt' : 'en';
+async function applyLanguage(language, { shouldSave = true } = {}) {
+    const isPortuguese = language === 'pt';
+    document.documentElement.lang = isPortuguese ? 'pt-BR' : 'en';
 
-    document.documentElement.lang = language === 'pt' ? 'pt-BR' : 'en';
-    titleElement.textContent = content.title;
-    subtitle.textContent = content.subtitle;
-    ctaButton.textContent = content.cta;
-    greetingText = content.greeting;
-    languageButton.textContent = translations[nextLanguage].toggleLabel;
+    let localizedContent = { ...baseContent };
+
+    if (isPortuguese) {
+        const [title, subtitleText, greeting, cta] = await translateListToPortuguese([
+            baseContent.title,
+            baseContent.subtitle,
+            baseContent.greeting,
+            baseContent.cta
+        ]);
+        localizedContent = {
+            title,
+            subtitle: subtitleText,
+            greeting,
+            cta,
+            toggleLabel: baseContent.translatedLabel
+        };
+    }
+
+    titleElement.textContent = localizedContent.title;
+    subtitle.textContent = localizedContent.subtitle;
+    ctaButton.textContent = localizedContent.cta;
+    greetingText = localizedContent.greeting;
+    languageButton.textContent = isPortuguese ? baseContent.translatedLabel : baseContent.toggleLabel;
 
     if (shouldSave) {
         saveLanguage(language);
@@ -135,10 +144,9 @@ function createFloating() {
 }
 
 // Initialize animations
-window.addEventListener('load', () => {
+window.addEventListener('load', async () => {
     setupCelebrationBursts();
 
-    // Title animation
     gsap.to('h1', {
         opacity: 1,
         duration: 1,
@@ -146,7 +154,6 @@ window.addEventListener('load', () => {
         ease: "bounce.out"
     });
 
-    // Subtitle animation
     gsap.to('.subtitle', {
         opacity: 1,
         duration: 1,
@@ -155,7 +162,6 @@ window.addEventListener('load', () => {
         ease: "power2.out"
     });
 
-    // Button animation
     gsap.to('.cta-button', {
         opacity: 1,
         duration: 1,
@@ -163,16 +169,14 @@ window.addEventListener('load', () => {
         ease: "back.out"
     });
 
-    // Start typing effect and set initial language
-    applyLanguage(currentLanguage, { shouldSave: false });
+    await applyLanguage(currentLanguage, { shouldSave: false });
 
-    // Create floating elements periodically
     setInterval(createFloating, 1000);
 });
 
-languageButton.addEventListener('click', () => {
+languageButton.addEventListener('click', async () => {
     currentLanguage = toggleLanguage(currentLanguage);
-    applyLanguage(currentLanguage);
+    await applyLanguage(currentLanguage);
 });
 
 // Hover effects
@@ -191,13 +195,12 @@ document.querySelectorAll('.cta-button').forEach(button => {
         });
     });
 
-    // Smooth page transition on click
     button.addEventListener('click', () => {
         gsap.to('body', {
             opacity: 0,
             duration: 1,
             onComplete: () => {
-                window.location.href = 'cause.html'; // Replace with the actual URL of the next page
+                window.location.href = 'cause.html';
             }
         });
     });

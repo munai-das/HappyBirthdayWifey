@@ -783,83 +783,52 @@
                         ]
                     }
                 ]
-            },
-            pt: {
-                toggleLabel: 'EN 🇺🇸',
-                pageTitle: 'Nossas Lembranças Lindas ✨',
-                welcomeTitle: 'Nossos Momentos Lindos Juntos',
-                welcomeBody: 'Cada momento ao seu lado foi mágico. Vamos guardar essas memórias preciosas...',
-                audioTitle: 'Uma música para você 🎶',
-                audioAria: 'Canção de aniversário',
-                finalTitle: 'Obrigada pelas lembranças',
-                finalBodyPrimary: 'Cada risada, cada conversa e cada momento que compartilhamos foi muito especial.💫 Sou muito grato pelo nosso vínculo e pela positividade que você traz para minha vida. No seu aniversário, desejo felicidade sem fim, amor e sucesso em seu caminho.🌸',
-                finalBodySecondary: 'Você merece toda a alegria do mundo — continue brilhando e espalhando sua energia linda.✨',
-                goodbyeCta: 'Até nos Encontrarmos de Novo 💝',
-                carousels: [
-                    {
-                        headerDate: '6 de maio de 2022',
-                        title: 'Momentos da Priya',
-                        subtitle: 'Edição de aniversário',
-                        slides: [
-                            {
-                                date: 'O sorriso diz tudo',
-                                caption: 'Você é uma das garotas mais doces que conheço, e sou sortudo por ter você como irmãzinha.❤️'
-                            },
-                            {
-                                date: 'Sintonias juntas',
-                                caption: 'Que sua caminhada seja cheia de felicidade, sucesso e muitos sorrisos.😊💕'
-                            },
-                            {
-                                date: 'Reel do pôr do sol',
-                                caption: 'Um vídeo nosso correndo atrás da luz dourada e rindo o caminho todo.🎬✨'
-                            },
-                            {
-                                date: 'Alma linda',
-                                caption: 'Continue sendo essa pessoa incrível — você ilumina cada momento.🌸💖'
-                            }
-                        ]
-                    },
-                    {
-                        headerDate: '12 de novembro de 2023',
-                        title: 'Aventuras aconchegantes',
-                        subtitle: 'Escapadinhas de fim de semana',
-                        slides: [
-                            {
-                                date: 'Passeio estrelado',
-                                caption: 'Corremos atrás do pôr do sol e terminamos com um céu cheio de estrelas — que viagem.🌠'
-                            },
-                            {
-                                date: 'Cantinhos chuvosos no café',
-                                caption: 'Café quentinho, janelas molhadas e conversas que nunca acabavam.☕️🌧️'
-                            },
-                            {
-                                date: 'Risadas de domingo preguiçoso',
-                                caption: 'Roupas confortáveis, clima acolhedor e risadas que ecoaram pela sala.😂💕'
-                            }
-                        ]
-                    },
-                    {
-                        headerDate: '2 de março de 2024',
-                        title: 'Dias em flor',
-                        subtitle: 'Cliques de primavera',
-                        slides: [
-                            {
-                                date: 'Piquenique entre pétalas',
-                                caption: 'Cobertor na grama, pétalas ao vento e você brilhando mais que o sol.🌷'
-                            },
-                            {
-                                date: 'Risadinhas no jardim',
-                                caption: 'Cada piada funcionou, cada flor sorriu de volta para nós.🌿😊'
-                            },
-                            {
-                                date: 'Hora de rodopiar',
-                                caption: 'Você girou entre as flores e fez o parque inteiro ganhar vida.🌺✨'
-                            }
-                        ]
-                    }
-                ]
             }
         };
+
+        async function buildPortugueseContent() {
+            const base = translations.en;
+            const [pageTitle, welcomeTitleText, welcomeBodyText, audioTitleText, audioAriaText, finalTitleText, finalBodyPrimaryText, finalBodySecondaryText, goodbyeCtaText] = await translateListToPortuguese([
+                base.pageTitle,
+                base.welcomeTitle,
+                base.welcomeBody,
+                base.audioTitle,
+                base.audioAria,
+                base.finalTitle,
+                base.finalBodyPrimary,
+                base.finalBodySecondary,
+                base.goodbyeCta
+            ]);
+
+            const carousels = [];
+            for (const carousel of base.carousels) {
+                const [headerDate, title, subtitle] = await translateListToPortuguese([
+                    carousel.headerDate,
+                    carousel.title,
+                    carousel.subtitle
+                ]);
+                const slides = [];
+                for (const slide of carousel.slides) {
+                    const [date, caption] = await translateListToPortuguese([slide.date, slide.caption]);
+                    slides.push({ ...slide, date, caption });
+                }
+                carousels.push({ ...carousel, headerDate, title, subtitle, slides });
+            }
+
+            translations.pt = {
+                toggleLabel: 'EN 🇺🇸',
+                pageTitle,
+                welcomeTitle: welcomeTitleText,
+                welcomeBody: welcomeBodyText,
+                audioTitle: audioTitleText,
+                audioAria: audioAriaText,
+                finalTitle: finalTitleText,
+                finalBodyPrimary: finalBodyPrimaryText,
+                finalBodySecondary: finalBodySecondaryText,
+                goodbyeCta: goodbyeCtaText,
+                carousels
+            };
+        }
 
         const languageButton = document.querySelector('.language-toggle');
         const welcomeTitle = document.querySelector('[data-i18n="welcomeTitle"]');
@@ -1023,7 +992,11 @@
             });
         }
 
-        function applyLanguage(language, { shouldSave = true, skipRefresh = false } = {}) {
+        async function applyLanguage(language, { shouldSave = true, skipRefresh = false } = {}) {
+            if (language === 'pt' && !translations.pt) {
+                await buildPortugueseContent();
+            }
+
             const content = translations[language];
             const nextLanguage = language === 'en' ? 'pt' : 'en';
 
@@ -1051,15 +1024,15 @@
             }
         }
 
-        function initLanguage() {
+        async function initLanguage() {
             let currentLanguage = getSavedLanguage('en');
-            applyLanguage(currentLanguage, { shouldSave: false, skipRefresh: true });
+            await applyLanguage(currentLanguage, { shouldSave: false, skipRefresh: true });
             initCarousels();
             refreshCarousels();
 
-            languageButton.addEventListener('click', () => {
+            languageButton.addEventListener('click', async () => {
                 currentLanguage = toggleLanguage(currentLanguage);
-                applyLanguage(currentLanguage);
+                await applyLanguage(currentLanguage);
             });
         }
 

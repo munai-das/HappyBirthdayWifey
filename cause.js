@@ -30,43 +30,11 @@ const translations = {
                 gif: "gif2.gif"
             }
         ]
-    },
-    pt: {
-        toggleLabel: 'EN 🇺🇸',
-        metaTitle: 'Por que você é minha melhor amiga! 💖',
-        heading: 'Feliz Aniversário, Priyaa 💖',
-        button: 'Clique aqui... 💕',
-        counterText: (index, total) => `Razão ${index} de ${total}`,
-        ending: 'Você é a MELHOR! 💖',
-        storyCta: 'Entre na Nossa História 💫',
-        reasons: [
-            {
-                text: 'Você é tão gentil e maravilhosa, e me sinto sortudo por compartilhar um vínculo tão bom com você. 💖',
-                emoji: '🌟',
-                gif: 'gif1.gif'
-            },
-            {
-                text: 'Que seu dia seja cheio de amor, risadas e alegria sem fim. 🌸',
-                emoji: '💗',
-                gif: 'gif2.gif'
-            },
-            {
-                text: 'Desejo sucesso, felicidade e tudo o que seu coração desejar. ✨',
-                emoji: '💕',
-                gif: 'gif1.gif'
-            },
-            {
-                text: 'Continue sendo essa garota incrível — sempre espalhando positividade. Tenha o ano mais feliz! 🥳',
-                emoji: '🌟',
-                gif: 'gif2.gif'
-            }
-        ]
     }
 };
 
-// State management
 let currentLanguage = getSavedLanguage('en');
-let reasonsData = translations[currentLanguage].reasons;
+let reasonsData = translations.en.reasons;
 let currentReasonIndex = 0;
 const reasonsContainer = document.getElementById('reasons-container');
 const shuffleButton = document.querySelector('.shuffle-button');
@@ -121,19 +89,28 @@ function setupCelebrationBursts() {
     });
 }
 
-// Create reason card with gif
 function createReasonCard(reason) {
     const card = document.createElement('div');
     card.className = 'reason-card';
 
+    const emoji = document.createElement('div');
+    emoji.className = 'emoji';
+    emoji.textContent = reason.emoji;
+
     const text = document.createElement('div');
-    text.className = 'reason-text';
-    text.innerHTML = `${reason.emoji} ${reason.text}`;
+    text.className = 'text';
+    text.textContent = reason.text;
 
     const gifOverlay = document.createElement('div');
     gifOverlay.className = 'gif-overlay';
-    gifOverlay.innerHTML = `<img src="${reason.gif}" alt="Friendship Memory">`;
 
+    const gif = document.createElement('img');
+    gif.src = reason.gif;
+    gif.alt = reason.text;
+
+    gifOverlay.appendChild(gif);
+
+    card.appendChild(emoji);
     card.appendChild(text);
     card.appendChild(gifOverlay);
 
@@ -165,7 +142,6 @@ function attachStoryNavigation() {
     shuffleButton.addEventListener('click', storyNavigationHandler);
 }
 
-// Display new reason
 function displayNewReason() {
     if (isTransitioning) return;
     isTransitioning = true;
@@ -174,12 +150,10 @@ function displayNewReason() {
         const card = createReasonCard(reasonsData[currentReasonIndex]);
         reasonsContainer.appendChild(card);
 
-        // Update counter
         reasonCounter.textContent = translations[currentLanguage].counterText(currentReasonIndex + 1, reasonsData.length);
 
         currentReasonIndex++;
 
-        // Check if we should transform the button
         if (currentReasonIndex === reasonsData.length) {
             shuffleButton.removeEventListener('click', primaryClickHandler);
             primaryListenerAttached = false;
@@ -195,7 +169,6 @@ function displayNewReason() {
             });
         }
 
-        // Create floating elements
         createFloatingElement();
 
         setTimeout(() => {
@@ -238,7 +211,6 @@ function primaryClickHandler() {
 shuffleButton.addEventListener('click', primaryClickHandler);
 primaryListenerAttached = true;
 
-// Floating elements function (same as before)
 function createFloatingElement() {
     const elements = ['🌸', '✨', '💖', '🦋', '⭐'];
     const element = document.createElement('div');
@@ -257,29 +229,59 @@ function createFloatingElement() {
     });
 }
 
-// Custom cursor (same as before)
-const cursor = document.querySelector('.custom-cursor');
-document.addEventListener('mousemove', (e) => {
-    gsap.to(cursor, {
-        x: e.clientX - 15,
-        y: e.clientY - 15,
-        duration: 0.2
+function createCustomCursor() {
+    const cursor = document.querySelector('.custom-cursor');
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
     });
-});
+}
 
-// Create initial floating elements
-setInterval(createFloatingElement, 2000);
+function handleKeyNavigation(event) {
+    if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        shuffleButton.click();
+    }
+}
 
-function applyLanguage(language, { shouldSave = true } = {}) {
-    currentLanguage = language;
-    reasonsData = translations[currentLanguage].reasons;
-    document.documentElement.lang = currentLanguage === 'pt' ? 'pt-BR' : 'en';
-    pageTitle.textContent = translations[currentLanguage].metaTitle;
-    document.querySelector('h1').textContent = translations[currentLanguage].heading;
-    shuffleButton.textContent = translations[currentLanguage].button;
-    endingText.textContent = translations[currentLanguage].ending;
-    languageButton.textContent = translations[currentLanguage === 'en' ? 'pt' : 'en'].toggleLabel;
+async function buildPortugueseContent() {
+    const base = translations.en;
+    const [metaTitle, heading, button, ending, storyCta] = await translateListToPortuguese([
+        base.metaTitle,
+        base.heading,
+        base.button,
+        base.ending,
+        base.storyCta
+    ]);
 
+    const reasons = await translateStructuredList(base.reasons, ['text']);
+
+    return {
+        toggleLabel: 'EN 🇺🇸',
+        metaTitle,
+        heading,
+        button,
+        counterText: (index, total) => `Razão ${index} de ${total}`,
+        ending,
+        storyCta,
+        reasons
+    };
+}
+
+async function applyLanguage(language, { shouldSave = true } = {}) {
+    const isPortuguese = language === 'pt';
+    document.documentElement.lang = isPortuguese ? 'pt-BR' : 'en';
+
+    translations.pt = translations.pt || (isPortuguese ? await buildPortugueseContent() : null);
+    const content = isPortuguese ? translations.pt : translations.en;
+
+    pageTitle.textContent = content.metaTitle;
+    document.querySelector('h1').textContent = content.heading;
+    shuffleButton.textContent = content.button;
+    endingText.textContent = content.ending;
+    languageButton.textContent = isPortuguese ? 'EN 🇺🇸' : 'PT-BR 🇧🇷';
+
+    reasonsData = content.reasons;
     resetReasons();
 
     if (shouldSave) {
@@ -287,9 +289,11 @@ function applyLanguage(language, { shouldSave = true } = {}) {
     }
 }
 
-languageButton.addEventListener('click', () => {
-    const nextLanguage = toggleLanguage(currentLanguage);
-    applyLanguage(nextLanguage);
+languageButton.addEventListener('click', async () => {
+    currentLanguage = toggleLanguage(currentLanguage);
+    await applyLanguage(currentLanguage);
 });
 
+window.addEventListener('keydown', handleKeyNavigation);
+createCustomCursor();
 applyLanguage(currentLanguage, { shouldSave: false });

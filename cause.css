@@ -14,7 +14,44 @@ body {
     animation: gradientBG 15s ease infinite;
     font-family: 'Quicksand', sans-serif;
     overflow-x: hidden;
-    padding: 2rem;
+    padding: 4.5rem 2rem 2.5rem;
+}
+
+.back-button {
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.85);
+    border: none;
+    border-radius: 999px;
+    padding: 0.5rem 0.9rem 0.5rem 0.6rem;
+    box-shadow: 0 8px 18px rgba(255, 105, 180, 0.2);
+    font-weight: 700;
+    color: #ff69b4;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 10;
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(255, 105, 180, 0.26);
+}
+
+.emoji-icon {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffe6f3;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.8), 0 2px 4px rgba(255, 105, 180, 0.25);
 }
 
 .celebration-layer {

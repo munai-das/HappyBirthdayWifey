@@ -281,6 +281,15 @@
             color: #888;
         }
 
+        .carousel-date {
+            font-size: 0.9rem;
+            color: #9b59b6;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
         .carousel-counter {
             margin-left: auto;
             font-weight: 700;
@@ -386,17 +395,12 @@
             display: flex;
             flex-direction: column;
             gap: 0.35rem;
-            padding: 0.75rem 0.85rem;
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 14px;
-            border: 1px solid rgba(255, 105, 180, 0.18);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
         }
 
         .memory-date {
-            font-size: 0.9rem;
-            color: #9a6fa3;
-            letter-spacing: 0.02em;
+            font-family: 'Dancing Script', cursive;
+            color: #ff69b4;
+            font-size: 1.25rem;
         }
 
         .memory-caption {
@@ -616,6 +620,7 @@
                     <div class="carousel-meta">
                         <strong>Priya's Moments</strong>
                         <span>Birthday edition</span>
+                        <span class="carousel-date">May 6, 2022</span>
                     </div>
                     <div class="carousel-counter" aria-live="polite">1 / 3</div>
                 </div>
@@ -623,20 +628,20 @@
                 <div class="carousel-window">
                     <button class="carousel-btn prev" aria-label="Previous memory">‹</button>
                     <div class="carousel-track">
-                        <div class="carousel-slide" data-date="Her Smile Says It All"
+                        <div class="carousel-slide" data-date="May 6, 2022"
                             data-caption="You’re truly one of the sweetest girls I know, and I feel lucky to have a sis like you.❤️">
                             <img src="./d1.jpg" alt="Her Smile Says It All">
                         </div>
-                        <div class="carousel-slide" data-date="Together Vibes"
+                        <div class="carousel-slide" data-date="May 6, 2022"
                             data-caption="May your journey ahead be filled with happiness, success, and endless smiles.😊💕">
                             <img src="./d2.jpg" alt="Together Vibes">
                         </div>
-                        <div class="carousel-slide" data-date="Sunset Reel"
+                        <div class="carousel-slide" data-date="May 6, 2022"
                             data-caption="A reel of us chasing golden hours and laughing the whole way.🎬✨">
                             <video src="./placeholder-reel.mp4" autoplay loop muted playsinline controls
                                 aria-label="Sunset Reel"></video>
                         </div>
-                        <div class="carousel-slide" data-date="Pretty Soul"
+                        <div class="carousel-slide" data-date="May 6, 2022"
                             data-caption="Keep being the amazing person you are—you make every moment brighter.🌸💖">
                             <img src="./d3.jpg" alt="Pretty Soul">
                         </div>
@@ -662,6 +667,7 @@
                     <div class="carousel-meta">
                         <strong>Cozy Adventures</strong>
                         <span>Weekend getaways</span>
+                        <span class="carousel-date">November 12, 2023</span>
                     </div>
                     <div class="carousel-counter" aria-live="polite">1 / 3</div>
                 </div>
@@ -669,15 +675,15 @@
                 <div class="carousel-window">
                     <button class="carousel-btn prev" aria-label="Previous adventure">‹</button>
                     <div class="carousel-track">
-                        <div class="carousel-slide" data-date="Starlit Drive"
+                        <div class="carousel-slide" data-date="November 12, 2023"
                             data-caption="We chased the sunset and ended up with a sky full of stars—what a drive.🌠">
                             <img src="./gif1.gif" alt="Starlit Drive">
                         </div>
-                        <div class="carousel-slide" data-date="Rainy Cafe Corners"
+                        <div class="carousel-slide" data-date="November 12, 2023"
                             data-caption="Warm coffee, rainy windows, and conversations that never ended.☕️🌧️">
                             <img src="./gif2.gif" alt="Rainy Cafe Corners">
                         </div>
-                        <div class="carousel-slide" data-date="Lazy Sunday Laughs"
+                        <div class="carousel-slide" data-date="November 12, 2023"
                             data-caption="Comfy clothes, cozy vibes, and laughter that echoed through the room.😂💕">
                             <img src="./d1.jpg" alt="Lazy Sunday Laughs">
                         </div>
@@ -703,6 +709,7 @@
                     <div class="carousel-meta">
                         <strong>Blooming Days</strong>
                         <span>Spring snapshots</span>
+                        <span class="carousel-date">March 2, 2024</span>
                     </div>
                     <div class="carousel-counter" aria-live="polite">1 / 3</div>
                 </div>
@@ -710,15 +717,15 @@
                 <div class="carousel-window">
                     <button class="carousel-btn prev" aria-label="Previous bloom">‹</button>
                     <div class="carousel-track">
-                        <div class="carousel-slide" data-date="Petal Picnic"
+                        <div class="carousel-slide" data-date="March 2, 2024"
                             data-caption="Blanket on the grass, petals in the breeze, and you shining brighter than the sun.🌷">
                             <img src="./d2.jpg" alt="Petal Picnic">
                         </div>
-                        <div class="carousel-slide" data-date="Garden Giggles"
+                        <div class="carousel-slide" data-date="March 2, 2024"
                             data-caption="Every joke landed, every flower smiled back at us.🌿😊">
                             <img src="./d3.jpg" alt="Garden Giggles">
                         </div>
-                        <div class="carousel-slide" data-date="Twirl Time"
+                        <div class="carousel-slide" data-date="March 2, 2024"
                             data-caption="You spun around with the blossoms and made the whole park feel alive.🌺✨">
                             <img src="./d1.jpg" alt="Twirl Time">
                         </div>
@@ -830,7 +837,7 @@
 
                     const { caption, date } = slides[currentIndex].dataset;
                     if (captionEl) captionEl.textContent = caption;
-                    if (dateEl) dateEl.textContent = date ? `📅 ${date}` : '';
+                    if (dateEl) dateEl.textContent = date || '';
                     if (counterEl) counterEl.textContent = `${currentIndex + 1} / ${total}`;
                 }
 

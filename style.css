@@ -55,6 +55,35 @@ body {
     z-index: 1;
 }
 
+.language-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(45deg, #ff69b4, #ff99cc);
+    border: none;
+    border-radius: 999px;
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.35);
+    cursor: pointer;
+    z-index: 2;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    letter-spacing: 0.5px;
+}
+
+.language-toggle:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 12px 28px rgba(255, 105, 180, 0.45);
+}
+
+.language-toggle:focus-visible {
+    outline: 3px solid rgba(255, 105, 180, 0.45);
+    outline-offset: 4px;
+    box-shadow: 0 0 0 6px rgba(255, 153, 204, 0.2);
+}
+
 h1 {
     font-size: 3.5rem;
     color: #ff69b4;
@@ -119,4 +148,10 @@ h1 {
     h1 { font-size: 2rem; }
     .greeting { font-size: 1.2rem; }
     .cta-button { font-size: 1rem; }
+    .language-toggle {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.9rem;
+        top: 14px;
+        right: 14px;
+    }
 }

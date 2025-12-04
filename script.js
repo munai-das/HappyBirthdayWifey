@@ -5,6 +5,34 @@ document.addEventListener('mousemove', (e) => {
     cursor.style.top = e.clientY + 'px';
 });
 
+const translations = {
+    en: {
+        title: 'Happy Birthday Priya💗',
+        subtitle: 'I built a tiny wonderland for you — enjoy the sparkles, stories, and surprises waiting inside.',
+        greeting: "Hey You Know What! You're the most adorable human I ever met! 💖",
+        cta: 'Click to Enter Our World 💕',
+        toggleLabel: 'PT-BR 🇧🇷'
+    },
+    pt: {
+        title: 'Feliz Aniversário, Priya💗',
+        subtitle: 'Construí um pequeno mundo para você — aproveite os brilhos, histórias e surpresas que te esperam.',
+        greeting: 'Ei, sabe de uma coisa? Você é a pessoa mais adorável que eu já conheci! 💖',
+        cta: 'Clique para Entrar no Nosso Mundo 💕',
+        toggleLabel: 'EN 🇺🇸'
+    }
+};
+
+const titleElement = document.querySelector('h1');
+const subtitle = document.querySelector('.subtitle');
+const greetingElement = document.querySelector('.greeting');
+const ctaButton = document.querySelector('.cta-button');
+const languageButton = document.querySelector('.language-toggle');
+
+let greetingText = translations.en.greeting;
+let charIndex = 0;
+let typingTimeout;
+let currentLanguage = 'en';
+
 function setupCelebrationBursts() {
     const layer = document.createElement('div');
     layer.className = 'celebration-layer';
@@ -47,23 +75,37 @@ function setupCelebrationBursts() {
     });
 }
 
-// Typing effect for greeting
-const greetingText = "Hey You Know What! You're the most adorable human I ever met! 💖";
-const greetingElement = document.querySelector('.greeting');
-let charIndex = 0;
-
-// Subtitle animation
-const subtitle = document.querySelector('.subtitle');
-
-function typeGreeting() {
-    if (charIndex === 0) {
-        greetingElement.textContent = '';
+function startGreeting() {
+    if (typingTimeout) {
+        clearTimeout(typingTimeout);
     }
-    if (charIndex < greetingText.length) {
-        greetingElement.textContent += greetingText.charAt(charIndex);
-        charIndex++;
-        setTimeout(typeGreeting, 100);
-    }
+
+    greetingElement.textContent = '';
+    charIndex = 0;
+
+    const typeNext = () => {
+        if (charIndex < greetingText.length) {
+            greetingElement.textContent += greetingText.charAt(charIndex);
+            charIndex++;
+            typingTimeout = setTimeout(typeNext, 100);
+        }
+    };
+
+    typeNext();
+}
+
+function applyLanguage(language) {
+    const content = translations[language];
+    const nextLanguage = language === 'en' ? 'pt' : 'en';
+
+    document.documentElement.lang = language === 'pt' ? 'pt-BR' : 'en';
+    titleElement.textContent = content.title;
+    subtitle.textContent = content.subtitle;
+    ctaButton.textContent = content.cta;
+    greetingText = content.greeting;
+    languageButton.textContent = translations[nextLanguage].toggleLabel;
+
+    startGreeting();
 }
 
 // Create floating elements
@@ -117,11 +159,16 @@ window.addEventListener('load', () => {
         ease: "back.out"
     });
 
-    // Start typing effect
-    typeGreeting();
+    // Start typing effect and set initial language
+    applyLanguage(currentLanguage);
 
     // Create floating elements periodically
     setInterval(createFloating, 1000);
+});
+
+languageButton.addEventListener('click', () => {
+    currentLanguage = currentLanguage === 'en' ? 'pt' : 'en';
+    applyLanguage(currentLanguage);
 });
 
 // Hover effects

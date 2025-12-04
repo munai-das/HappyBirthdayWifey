@@ -31,7 +31,7 @@ const languageButton = document.querySelector('.language-toggle');
 let greetingText = translations.en.greeting;
 let charIndex = 0;
 let typingTimeout;
-let currentLanguage = 'en';
+let currentLanguage = getSavedLanguage('en');
 
 function setupCelebrationBursts() {
     const layer = document.createElement('div');
@@ -94,7 +94,7 @@ function startGreeting() {
     typeNext();
 }
 
-function applyLanguage(language) {
+function applyLanguage(language, { shouldSave = true } = {}) {
     const content = translations[language];
     const nextLanguage = language === 'en' ? 'pt' : 'en';
 
@@ -104,6 +104,10 @@ function applyLanguage(language) {
     ctaButton.textContent = content.cta;
     greetingText = content.greeting;
     languageButton.textContent = translations[nextLanguage].toggleLabel;
+
+    if (shouldSave) {
+        saveLanguage(language);
+    }
 
     startGreeting();
 }
@@ -160,14 +164,14 @@ window.addEventListener('load', () => {
     });
 
     // Start typing effect and set initial language
-    applyLanguage(currentLanguage);
+    applyLanguage(currentLanguage, { shouldSave: false });
 
     // Create floating elements periodically
     setInterval(createFloating, 1000);
 });
 
 languageButton.addEventListener('click', () => {
-    currentLanguage = currentLanguage === 'en' ? 'pt' : 'en';
+    currentLanguage = toggleLanguage(currentLanguage);
     applyLanguage(currentLanguage);
 });
 

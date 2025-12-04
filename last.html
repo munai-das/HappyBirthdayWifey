@@ -15,6 +15,35 @@
             box-sizing: border-box;
         }
 
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 0.6rem 1.1rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(45deg, #ff69b4, #ff99cc);
+            border: none;
+            border-radius: 999px;
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.35);
+            cursor: pointer;
+            z-index: 4;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .language-toggle:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 12px 28px rgba(255, 105, 180, 0.45);
+        }
+
+        .language-toggle:focus-visible {
+            outline: 3px solid rgba(255, 105, 180, 0.45);
+            outline-offset: 4px;
+            box-shadow: 0 0 0 6px rgba(255, 153, 204, 0.2);
+        }
+
         body {
             min-height: 100vh;
             background: linear-gradient(135deg,
@@ -532,6 +561,7 @@
 </head>
 
 <body>
+    <button class="language-toggle" aria-label="Toggle language">PT-BR 🇧🇷</button>
     <div class="magic-sparkles"></div>
     <div class="floating-hearts">
         <!-- Hearts will be generated via CSS -->
@@ -543,19 +573,19 @@
     </div>
 
     <section class="welcome">
-        <h1>Our Beautiful Moments Together</h1>
-        <p>Every moment spent with you has been magical. Let's cherish these precious memories ...</p>
+        <h1 data-i18n="welcomeTitle">Our Beautiful Moments Together</h1>
+        <p data-i18n="welcomeBody">Every moment spent with you has been magical. Let's cherish these precious memories ...</p>
     </section>
 
     <div class="memory-list">
         <div class="memory-container">
-            <div class="carousel-card" aria-label="First memory carousel" data-memory-date="May 6, 2022">
+            <div class="carousel-card" aria-label="First memory carousel" data-memory-card="1" data-memory-date="May 6, 2022">
                 <div class="carousel-header">
                     <div class="carousel-avatar">💕</div>
                     <div class="carousel-meta">
-                        <strong>Priya's Moments</strong>
-                        <span>Birthday edition</span>
-                        <span class="carousel-date">May 6, 2022</span>
+                        <strong data-memory-title>Priya's Moments</strong>
+                        <span data-memory-subtitle>Birthday edition</span>
+                        <span class="carousel-date" data-memory-header-date>May 6, 2022</span>
                     </div>
                     <div class="carousel-counter" aria-live="polite">1 / 3</div>
                 </div>
@@ -563,21 +593,16 @@
                 <div class="carousel-window">
                     <button class="carousel-btn prev" aria-label="Previous memory">‹</button>
                     <div class="carousel-track">
-                        <div class="carousel-slide" data-date="Her Smile Says It All"
-                            data-caption="You’re truly one of the sweetest girls I know, and I feel lucky to have a sis like you.❤️">
+                        <div class="carousel-slide" data-date="Her Smile Says It All" data-caption="You’re truly one of the sweetest girls I know, and I feel lucky to have a sis like you.❤️" data-date-en="Her Smile Says It All" data-caption-en="You’re truly one of the sweetest girls I know, and I feel lucky to have a sis like you.❤️" data-date-pt="O sorriso diz tudo" data-caption-pt="Você é uma das garotas mais doces que conheço, e sou sortudo por ter você como irmãzinha.❤️">
                             <img src="./d1.jpg" alt="Her Smile Says It All">
                         </div>
-                        <div class="carousel-slide" data-date="Together Vibes"
-                            data-caption="May your journey ahead be filled with happiness, success, and endless smiles.😊💕">
+                        <div class="carousel-slide" data-date="Together Vibes" data-caption="May your journey ahead be filled with happiness, success, and endless smiles.😊💕" data-date-en="Together Vibes" data-caption-en="May your journey ahead be filled with happiness, success, and endless smiles.😊💕" data-date-pt="Sintonias juntas" data-caption-pt="Que sua caminhada seja cheia de felicidade, sucesso e muitos sorrisos.😊💕">
                             <img src="./d2.jpg" alt="Together Vibes">
                         </div>
-                        <div class="carousel-slide" data-date="Sunset Reel"
-                            data-caption="A reel of us chasing golden hours and laughing the whole way.🎬✨">
-                            <video src="./placeholder-reel.mp4" autoplay loop muted playsinline controls
-                                aria-label="Sunset Reel"></video>
+                        <div class="carousel-slide" data-date="Sunset Reel" data-caption="A reel of us chasing golden hours and laughing the whole way.🎬✨" data-date-en="Sunset Reel" data-caption-en="A reel of us chasing golden hours and laughing the whole way.🎬✨" data-date-pt="Reel do pôr do sol" data-caption-pt="Um vídeo nosso correndo atrás da luz dourada e rindo o caminho todo.🎬✨">
+                            <video src="./placeholder-reel.mp4" autoplay loop muted playsinline controls aria-label="Sunset Reel"></video>
                         </div>
-                        <div class="carousel-slide" data-date="Pretty Soul"
-                            data-caption="Keep being the amazing person you are—you make every moment brighter.🌸💖">
+                        <div class="carousel-slide" data-date="Pretty Soul" data-caption="Keep being the amazing person you are—you make every moment brighter.🌸💖" data-date-en="Pretty Soul" data-caption-en="Keep being the amazing person you are—you make every moment brighter.🌸💖" data-date-pt="Alma linda" data-caption-pt="Continue sendo essa pessoa incrível — você ilumina cada momento.🌸💖">
                             <img src="./d3.jpg" alt="Pretty Soul">
                         </div>
                     </div>
@@ -593,13 +618,13 @@
         </div>
 
         <div class="memory-container">
-            <div class="carousel-card" aria-label="Second memory carousel" data-memory-date="November 12, 2023">
+            <div class="carousel-card" aria-label="Second memory carousel" data-memory-card="2" data-memory-date="November 12, 2023">
                 <div class="carousel-header">
                     <div class="carousel-avatar">✨</div>
                     <div class="carousel-meta">
-                        <strong>Cozy Adventures</strong>
-                        <span>Weekend getaways</span>
-                        <span class="carousel-date">November 12, 2023</span>
+                        <strong data-memory-title>Cozy Adventures</strong>
+                        <span data-memory-subtitle>Weekend getaways</span>
+                        <span class="carousel-date" data-memory-header-date>November 12, 2023</span>
                     </div>
                     <div class="carousel-counter" aria-live="polite">1 / 3</div>
                 </div>
@@ -607,16 +632,13 @@
                 <div class="carousel-window">
                     <button class="carousel-btn prev" aria-label="Previous adventure">‹</button>
                     <div class="carousel-track">
-                        <div class="carousel-slide" data-date="Starlit Drive"
-                            data-caption="We chased the sunset and ended up with a sky full of stars—what a drive.🌠">
+                        <div class="carousel-slide" data-date="Starlit Drive" data-caption="We chased the sunset and ended up with a sky full of stars—what a drive.🌠" data-date-en="Starlit Drive" data-caption-en="We chased the sunset and ended up with a sky full of stars—what a drive.🌠" data-date-pt="Passeio estrelado" data-caption-pt="Corremos atrás do pôr do sol e terminamos com um céu cheio de estrelas — que viagem.🌠">
                             <img src="./gif1.gif" alt="Starlit Drive">
                         </div>
-                        <div class="carousel-slide" data-date="Rainy Cafe Corners"
-                            data-caption="Warm coffee, rainy windows, and conversations that never ended.☕️🌧️">
+                        <div class="carousel-slide" data-date="Rainy Cafe Corners" data-caption="Warm coffee, rainy windows, and conversations that never ended.☕️🌧️" data-date-en="Rainy Cafe Corners" data-caption-en="Warm coffee, rainy windows, and conversations that never ended.☕️🌧️" data-date-pt="Cantinhos chuvosos no café" data-caption-pt="Café quentinho, janelas molhadas e conversas que nunca acabavam.☕️🌧️">
                             <img src="./gif2.gif" alt="Rainy Cafe Corners">
                         </div>
-                        <div class="carousel-slide" data-date="Lazy Sunday Laughs"
-                            data-caption="Comfy clothes, cozy vibes, and laughter that echoed through the room.😂💕">
+                        <div class="carousel-slide" data-date="Lazy Sunday Laughs" data-caption="Comfy clothes, cozy vibes, and laughter that echoed through the room.😂💕" data-date-en="Lazy Sunday Laughs" data-caption-en="Comfy clothes, cozy vibes, and laughter that echoed through the room.😂💕" data-date-pt="Risadas de domingo preguiçoso" data-caption-pt="Roupas confortáveis, clima acolhedor e risadas que ecoaram pela sala.😂💕">
                             <img src="./d1.jpg" alt="Lazy Sunday Laughs">
                         </div>
                     </div>
@@ -632,13 +654,13 @@
         </div>
 
         <div class="memory-container">
-            <div class="carousel-card" aria-label="Third memory carousel" data-memory-date="March 2, 2024">
+            <div class="carousel-card" aria-label="Third memory carousel" data-memory-card="3" data-memory-date="March 2, 2024">
                 <div class="carousel-header">
                     <div class="carousel-avatar">🌸</div>
                     <div class="carousel-meta">
-                        <strong>Blooming Days</strong>
-                        <span>Spring snapshots</span>
-                        <span class="carousel-date">March 2, 2024</span>
+                        <strong data-memory-title>Blooming Days</strong>
+                        <span data-memory-subtitle>Spring snapshots</span>
+                        <span class="carousel-date" data-memory-header-date>March 2, 2024</span>
                     </div>
                     <div class="carousel-counter" aria-live="polite">1 / 3</div>
                 </div>
@@ -646,16 +668,13 @@
                 <div class="carousel-window">
                     <button class="carousel-btn prev" aria-label="Previous bloom">‹</button>
                     <div class="carousel-track">
-                        <div class="carousel-slide" data-date="Petal Picnic"
-                            data-caption="Blanket on the grass, petals in the breeze, and you shining brighter than the sun.🌷">
+                        <div class="carousel-slide" data-date="Petal Picnic" data-caption="Blanket on the grass, petals in the breeze, and you shining brighter than the sun.🌷" data-date-en="Petal Picnic" data-caption-en="Blanket on the grass, petals in the breeze, and you shining brighter than the sun.🌷" data-date-pt="Piquenique entre pétalas" data-caption-pt="Cobertor na grama, pétalas ao vento e você brilhando mais que o sol.🌷">
                             <img src="./d2.jpg" alt="Petal Picnic">
                         </div>
-                        <div class="carousel-slide" data-date="Garden Giggles"
-                            data-caption="Every joke landed, every flower smiled back at us.🌿😊">
+                        <div class="carousel-slide" data-date="Garden Giggles" data-caption="Every joke landed, every flower smiled back at us.🌿😊" data-date-en="Garden Giggles" data-caption-en="Every joke landed, every flower smiled back at us.🌿😊" data-date-pt="Risadinhas no jardim" data-caption-pt="Cada piada funcionou, cada flor sorriu de volta para nós.🌿😊">
                             <img src="./d3.jpg" alt="Garden Giggles">
                         </div>
-                        <div class="carousel-slide" data-date="Twirl Time"
-                            data-caption="You spun around with the blossoms and made the whole park feel alive.🌺✨">
+                        <div class="carousel-slide" data-date="Twirl Time" data-caption="You spun around with the blossoms and made the whole park feel alive.🌺✨" data-date-en="Twirl Time" data-caption-en="You spun around with the blossoms and made the whole park feel alive.🌺✨" data-date-pt="Hora de rodopiar" data-caption-pt="Você girou entre as flores e fez o parque inteiro ganhar vida.🌺✨">
                             <img src="./d1.jpg" alt="Twirl Time">
                         </div>
                     </div>
@@ -671,8 +690,8 @@
         </div>
     </div>
 
-    <section class="audio-player" aria-label="Birthday song">
-        <h3>A Song For You 🎶</h3>
+    <section class="audio-player" aria-label="Birthday song" data-audio-section>
+        <h3 data-i18n="audioTitle">A Song For You 🎶</h3>
         <audio controls>
             <source src="./music.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
@@ -680,15 +699,181 @@
     </section>
 
     <section class="final-message">
-        <h2>Thank You for the Memories</h2>
-        <p>Every laugh, every chat, and every moment we’ve shared has been truly special.💫<br>
+        <h2 data-i18n="finalTitle">Thank You for the Memories</h2>
+        <p data-i18n="finalBodyPrimary">Every laugh, every chat, and every moment we’ve shared has been truly special.💫<br>
             I’m so grateful for the bond we have, and for the positivity you always bring into my life.<br>
             On your birthday, I just wish for endless happiness, love, and success to come your way.🌸</p>
-        <p>You deserve all the joy in the world—keep shining and spreading your beautiful energy.✨</p>
-        <a href="#" class="goodbye-btn">Until We Meet Again 💝</a>
+        <p data-i18n="finalBodySecondary">You deserve all the joy in the world—keep shining and spreading your beautiful energy.✨</p>
+        <a href="#" class="goodbye-btn" data-i18n="goodbyeCta">Until We Meet Again 💝</a>
     </section>
+    <script src="language.js"></script>
     <script>
-        (function setupCelebrationBursts() {
+        const translations = {
+            en: {
+                toggleLabel: 'PT-BR 🇧🇷',
+                pageTitle: 'Our Beautiful Memories ✨',
+                welcomeTitle: 'Our Beautiful Moments Together',
+                welcomeBody: "Every moment spent with you has been magical. Let's cherish these precious memories ...",
+                audioTitle: 'A Song For You 🎶',
+                audioAria: 'Birthday song',
+                finalTitle: 'Thank You for the Memories',
+                finalBodyPrimary: 'Every laugh, every chat, and every moment we’ve shared has been truly special.💫 I’m so grateful for the bond we have, and for the positivity you always bring into my life. On your birthday, I just wish for endless happiness, love, and success to come your way.🌸',
+                finalBodySecondary: 'You deserve all the joy in the world—keep shining and spreading your beautiful energy.✨',
+                goodbyeCta: 'Until We Meet Again 💝',
+                carousels: [
+                    {
+                        headerDate: 'May 6, 2022',
+                        title: "Priya's Moments",
+                        subtitle: 'Birthday edition',
+                        slides: [
+                            {
+                                date: 'Her Smile Says It All',
+                                caption: 'You’re truly one of the sweetest girls I know, and I feel lucky to have a sis like you.❤️'
+                            },
+                            {
+                                date: 'Together Vibes',
+                                caption: 'May your journey ahead be filled with happiness, success, and endless smiles.😊💕'
+                            },
+                            {
+                                date: 'Sunset Reel',
+                                caption: 'A reel of us chasing golden hours and laughing the whole way.🎬✨'
+                            },
+                            {
+                                date: 'Pretty Soul',
+                                caption: 'Keep being the amazing person you are—you make every moment brighter.🌸💖'
+                            }
+                        ]
+                    },
+                    {
+                        headerDate: 'November 12, 2023',
+                        title: 'Cozy Adventures',
+                        subtitle: 'Weekend getaways',
+                        slides: [
+                            {
+                                date: 'Starlit Drive',
+                                caption: 'We chased the sunset and ended up with a sky full of stars—what a drive.🌠'
+                            },
+                            {
+                                date: 'Rainy Cafe Corners',
+                                caption: 'Warm coffee, rainy windows, and conversations that never ended.☕️🌧️'
+                            },
+                            {
+                                date: 'Lazy Sunday Laughs',
+                                caption: 'Comfy clothes, cozy vibes, and laughter that echoed through the room.😂💕'
+                            }
+                        ]
+                    },
+                    {
+                        headerDate: 'March 2, 2024',
+                        title: 'Blooming Days',
+                        subtitle: 'Spring snapshots',
+                        slides: [
+                            {
+                                date: 'Petal Picnic',
+                                caption: 'Blanket on the grass, petals in the breeze, and you shining brighter than the sun.🌷'
+                            },
+                            {
+                                date: 'Garden Giggles',
+                                caption: 'Every joke landed, every flower smiled back at us.🌿😊'
+                            },
+                            {
+                                date: 'Twirl Time',
+                                caption: 'You spun around with the blossoms and made the whole park feel alive.🌺✨'
+                            }
+                        ]
+                    }
+                ]
+            },
+            pt: {
+                toggleLabel: 'EN 🇺🇸',
+                pageTitle: 'Nossas Lembranças Lindas ✨',
+                welcomeTitle: 'Nossos Momentos Lindos Juntos',
+                welcomeBody: 'Cada momento ao seu lado foi mágico. Vamos guardar essas memórias preciosas...',
+                audioTitle: 'Uma música para você 🎶',
+                audioAria: 'Canção de aniversário',
+                finalTitle: 'Obrigada pelas lembranças',
+                finalBodyPrimary: 'Cada risada, cada conversa e cada momento que compartilhamos foi muito especial.💫 Sou muito grato pelo nosso vínculo e pela positividade que você traz para minha vida. No seu aniversário, desejo felicidade sem fim, amor e sucesso em seu caminho.🌸',
+                finalBodySecondary: 'Você merece toda a alegria do mundo — continue brilhando e espalhando sua energia linda.✨',
+                goodbyeCta: 'Até nos Encontrarmos de Novo 💝',
+                carousels: [
+                    {
+                        headerDate: '6 de maio de 2022',
+                        title: 'Momentos da Priya',
+                        subtitle: 'Edição de aniversário',
+                        slides: [
+                            {
+                                date: 'O sorriso diz tudo',
+                                caption: 'Você é uma das garotas mais doces que conheço, e sou sortudo por ter você como irmãzinha.❤️'
+                            },
+                            {
+                                date: 'Sintonias juntas',
+                                caption: 'Que sua caminhada seja cheia de felicidade, sucesso e muitos sorrisos.😊💕'
+                            },
+                            {
+                                date: 'Reel do pôr do sol',
+                                caption: 'Um vídeo nosso correndo atrás da luz dourada e rindo o caminho todo.🎬✨'
+                            },
+                            {
+                                date: 'Alma linda',
+                                caption: 'Continue sendo essa pessoa incrível — você ilumina cada momento.🌸💖'
+                            }
+                        ]
+                    },
+                    {
+                        headerDate: '12 de novembro de 2023',
+                        title: 'Aventuras aconchegantes',
+                        subtitle: 'Escapadinhas de fim de semana',
+                        slides: [
+                            {
+                                date: 'Passeio estrelado',
+                                caption: 'Corremos atrás do pôr do sol e terminamos com um céu cheio de estrelas — que viagem.🌠'
+                            },
+                            {
+                                date: 'Cantinhos chuvosos no café',
+                                caption: 'Café quentinho, janelas molhadas e conversas que nunca acabavam.☕️🌧️'
+                            },
+                            {
+                                date: 'Risadas de domingo preguiçoso',
+                                caption: 'Roupas confortáveis, clima acolhedor e risadas que ecoaram pela sala.😂💕'
+                            }
+                        ]
+                    },
+                    {
+                        headerDate: '2 de março de 2024',
+                        title: 'Dias em flor',
+                        subtitle: 'Cliques de primavera',
+                        slides: [
+                            {
+                                date: 'Piquenique entre pétalas',
+                                caption: 'Cobertor na grama, pétalas ao vento e você brilhando mais que o sol.🌷'
+                            },
+                            {
+                                date: 'Risadinhas no jardim',
+                                caption: 'Cada piada funcionou, cada flor sorriu de volta para nós.🌿😊'
+                            },
+                            {
+                                date: 'Hora de rodopiar',
+                                caption: 'Você girou entre as flores e fez o parque inteiro ganhar vida.🌺✨'
+                            }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        const languageButton = document.querySelector('.language-toggle');
+        const welcomeTitle = document.querySelector('[data-i18n="welcomeTitle"]');
+        const welcomeBody = document.querySelector('[data-i18n="welcomeBody"]');
+        const audioSection = document.querySelector('[data-audio-section]');
+        const audioTitle = document.querySelector('[data-i18n="audioTitle"]');
+        const finalTitle = document.querySelector('[data-i18n="finalTitle"]');
+        const finalBodyPrimary = document.querySelector('[data-i18n="finalBodyPrimary"]');
+        const finalBodySecondary = document.querySelector('[data-i18n="finalBodySecondary"]');
+        const goodbyeCta = document.querySelector('[data-i18n="goodbyeCta"]');
+        const carouselCards = Array.from(document.querySelectorAll('.carousel-card'));
+        const carouselInstances = [];
+
+        function setupCelebrationBursts() {
             const layer = document.createElement('div');
             layer.className = 'celebration-layer';
             document.body.appendChild(layer);
@@ -728,71 +913,158 @@
                 if (event.target.closest('button')) return;
                 burst(event.clientX, event.clientY);
             });
-        })();
+        }
 
-        (function () {
-            const carousels = document.querySelectorAll('.carousel-card');
+        function setupCarousel(card) {
+            const track = card.querySelector('.carousel-track');
+            const dotsContainer = card.querySelector('.carousel-dots');
+            const captionEl = card.querySelector('.memory-caption');
+            const dateEl = card.querySelector('.memory-date');
+            const counterEl = card.querySelector('.carousel-counter');
+            const prevBtn = card.querySelector('.carousel-btn.prev');
+            const nextBtn = card.querySelector('.carousel-btn.next');
+            const slides = Array.from(track?.querySelectorAll('.carousel-slide') || []);
 
-            carousels.forEach((carousel) => {
-                const track = carousel.querySelector('.carousel-track');
-                const dotsContainer = carousel.querySelector('.carousel-dots');
-                const captionEl = carousel.querySelector('.memory-caption');
-                const dateEl = carousel.querySelector('.memory-date');
-                const counterEl = carousel.querySelector('.carousel-counter');
-                const prevBtn = carousel.querySelector('.carousel-btn.prev');
-                const nextBtn = carousel.querySelector('.carousel-btn.next');
-                const headerDate = carousel.querySelector('.carousel-date');
+            if (!track || !dotsContainer || !prevBtn || !nextBtn || slides.length === 0) return null;
 
-                if (!track || !dotsContainer || !prevBtn || !nextBtn) return;
+            let currentIndex = 0;
 
-                if (headerDate && carousel.dataset.memoryDate) {
-                    headerDate.textContent = carousel.dataset.memoryDate;
+            slides.forEach((slide, index) => {
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot';
+                dot.type = 'button';
+                dot.setAttribute('aria-label', `Go to memory ${index + 1}`);
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = Array.from(dotsContainer.querySelectorAll('.carousel-dot'));
+
+            function goToSlide(index) {
+                const total = slides.length;
+                currentIndex = (index + total) % total;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === currentIndex));
+
+                const { caption, date } = slides[currentIndex].dataset;
+                if (dateEl) dateEl.textContent = date;
+                if (captionEl) captionEl.textContent = caption;
+                if (counterEl) counterEl.textContent = `${currentIndex + 1} / ${total}`;
+            }
+
+            prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+            nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+            let startX = 0;
+            track.addEventListener('touchstart', (event) => {
+                startX = event.touches[0].clientX;
+            });
+
+            track.addEventListener('touchend', (event) => {
+                const diff = event.changedTouches[0].clientX - startX;
+                if (Math.abs(diff) > 40) {
+                    goToSlide(diff > 0 ? currentIndex - 1 : currentIndex + 1);
                 }
+            });
 
-                const slides = Array.from(track.querySelectorAll('.carousel-slide'));
-                let currentIndex = 0;
+            goToSlide(0);
 
-                slides.forEach((slide, index) => {
-                    const dot = document.createElement('button');
-                    dot.className = 'carousel-dot';
-                    dot.type = 'button';
-                    dot.setAttribute('aria-label', `Go to memory ${index + 1}`);
-                    dot.addEventListener('click', () => goToSlide(index));
-                    dotsContainer.appendChild(dot);
-                });
+            return {
+                refresh: () => goToSlide(currentIndex)
+            };
+        }
 
-                const dots = Array.from(dotsContainer.querySelectorAll('.carousel-dot'));
-
-                function goToSlide(index) {
-                    const total = slides.length;
-                    currentIndex = (index + total) % total;
-                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-                    dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === currentIndex));
-
-                    const { caption, date } = slides[currentIndex].dataset;
-                    if (dateEl) dateEl.textContent = date;
-                    if (captionEl) captionEl.textContent = caption;
-                    if (counterEl) counterEl.textContent = `${currentIndex + 1} / ${total}`;
+        function initCarousels() {
+            carouselInstances.length = 0;
+            carouselCards.forEach((card) => {
+                const instance = setupCarousel(card);
+                if (instance) {
+                    carouselInstances.push(instance);
                 }
+            });
+        }
 
-                prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-                nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+        function refreshCarousels() {
+            carouselInstances.forEach((instance) => instance.refresh());
+        }
 
-                let startX = 0;
-                track.addEventListener('touchstart', (event) => {
-                    startX = event.touches[0].clientX;
-                });
+        function syncCarouselContent(language) {
+            const content = translations[language];
+            content.carousels.forEach((carouselData, index) => {
+                const card = carouselCards[index];
+                if (!card) return;
 
-                track.addEventListener('touchend', (event) => {
-                    const diff = event.changedTouches[0].clientX - startX;
-                    if (Math.abs(diff) > 40) {
-                        goToSlide(diff > 0 ? currentIndex - 1 : currentIndex + 1);
+                const title = card.querySelector('[data-memory-title]');
+                const subtitle = card.querySelector('[data-memory-subtitle]');
+                const headerDate = card.querySelector('[data-memory-header-date]');
+
+                if (title) title.textContent = carouselData.title;
+                if (subtitle) subtitle.textContent = carouselData.subtitle;
+                if (headerDate) headerDate.textContent = carouselData.headerDate;
+                card.dataset.memoryDate = carouselData.headerDate;
+
+                const slides = Array.from(card.querySelectorAll('.carousel-slide'));
+                slides.forEach((slide, slideIndex) => {
+                    const slideData = carouselData.slides[slideIndex];
+                    if (!slideData) return;
+
+                    slide.dataset.date = slideData.date;
+                    slide.dataset.caption = slideData.caption;
+
+                    const media = slide.querySelector('img, video');
+                    if (media) {
+                        if (media.tagName === 'VIDEO') {
+                            media.setAttribute('aria-label', slideData.date);
+                        } else {
+                            media.alt = slideData.date;
+                        }
                     }
                 });
-
-                goToSlide(0);
             });
-        })();
+        }
+
+        function applyLanguage(language, { shouldSave = true, skipRefresh = false } = {}) {
+            const content = translations[language];
+            const nextLanguage = language === 'en' ? 'pt' : 'en';
+
+            document.documentElement.lang = language === 'pt' ? 'pt-BR' : 'en';
+            document.title = content.pageTitle;
+            languageButton.textContent = translations[nextLanguage].toggleLabel;
+
+            if (welcomeTitle) welcomeTitle.textContent = content.welcomeTitle;
+            if (welcomeBody) welcomeBody.textContent = content.welcomeBody;
+            if (audioTitle) audioTitle.textContent = content.audioTitle;
+            if (audioSection) audioSection.setAttribute('aria-label', content.audioAria);
+            if (finalTitle) finalTitle.textContent = content.finalTitle;
+            if (finalBodyPrimary) finalBodyPrimary.textContent = content.finalBodyPrimary;
+            if (finalBodySecondary) finalBodySecondary.textContent = content.finalBodySecondary;
+            if (goodbyeCta) goodbyeCta.textContent = content.goodbyeCta;
+
+            syncCarouselContent(language);
+
+            if (!skipRefresh) {
+                refreshCarousels();
+            }
+
+            if (shouldSave) {
+                saveLanguage(language);
+            }
+        }
+
+        function initLanguage() {
+            let currentLanguage = getSavedLanguage('en');
+            applyLanguage(currentLanguage, { shouldSave: false, skipRefresh: true });
+            initCarousels();
+            refreshCarousels();
+
+            languageButton.addEventListener('click', () => {
+                currentLanguage = toggleLanguage(currentLanguage);
+                applyLanguage(currentLanguage);
+            });
+        }
+
+        setupCelebrationBursts();
+        initLanguage();
     </script>
 </body>
 

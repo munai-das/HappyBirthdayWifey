@@ -172,11 +172,139 @@
             animation: fadeIn 2s ease 0.5s both;
         }
 
+        /* Layout wrapper for timeline + cards */
+        .memory-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 1.5rem 3rem;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 1.5rem;
+            align-items: start;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Timeline column */
+        .timeline-panel {
+            position: sticky;
+            top: 90px;
+            align-self: flex-start;
+            padding: 1.25rem 1rem;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.24);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .timeline-track {
+            position: relative;
+            padding-left: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+
+        .timeline-track::before {
+            content: '';
+            position: absolute;
+            left: 0.75rem;
+            top: 0.3rem;
+            bottom: 0.3rem;
+            width: 3px;
+            background: linear-gradient(180deg, #ffb6c1, #caa0ff, #ffd479);
+            box-shadow: 0 0 12px rgba(255, 182, 193, 0.4);
+        }
+
+        .timeline-entry {
+            display: grid;
+            grid-template-columns: 32px 1fr;
+            gap: 0.75rem;
+            align-items: center;
+            position: relative;
+            border: none;
+            background: transparent;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .timeline-dot {
+            position: relative;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ffe6f0, #ff69b4 65%);
+            box-shadow: 0 0 0 6px rgba(255, 105, 180, 0.18), 0 0 16px rgba(202, 160, 255, 0.6);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+
+        .timeline-dot::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 28px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 0.35rem 0.6rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: #7a4ba0;
+            border-radius: 10px;
+            font-size: 0.78rem;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .timeline-dot:hover {
+            transform: scale(1.12);
+            box-shadow: 0 0 0 8px rgba(255, 105, 180, 0.24), 0 0 20px rgba(202, 160, 255, 0.75);
+        }
+
+        .timeline-dot:hover::after {
+            opacity: 1;
+            transform: translate(10px, -50%);
+        }
+
+        .timeline-dot.active {
+            background: radial-gradient(circle at 30% 30%, #fff4fb, #c084fc 70%);
+            box-shadow: 0 0 0 10px rgba(192, 132, 252, 0.2), 0 0 26px rgba(255, 212, 121, 0.9);
+        }
+
+        .timeline-label {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+            background: rgba(255, 255, 255, 0.76);
+            padding: 0.55rem 0.75rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .timeline-label strong {
+            color: #7a4ba0;
+            letter-spacing: 0.02em;
+        }
+
+        .timeline-label span {
+            color: #9b6cc6;
+            font-size: 0.92rem;
+        }
+
+        .timeline-entry.active .timeline-label {
+            transform: translateX(4px);
+            color: #7a4ba0;
+        }
+
         /* Instagram-style Carousel */
         .memory-list {
             max-width: 920px;
             margin: 0 auto;
-            padding: 2rem 1.5rem 3rem;
+            padding: 2rem 0 3rem;
             position: relative;
             z-index: 3;
             display: flex;
@@ -501,13 +629,60 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1040px) {
+            .memory-shell {
+                grid-template-columns: 260px 1fr;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .memory-shell {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-panel {
+                position: sticky;
+                top: 0;
+                z-index: 5;
+                padding: 0.75rem 0.75rem 0.35rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .timeline-track {
+                flex-direction: row;
+                gap: 1rem;
+                padding: 0.75rem 0.5rem;
+                align-items: center;
+                overflow-x: auto;
+                scrollbar-width: thin;
+            }
+
+            .timeline-track::before {
+                display: none;
+            }
+
+            .timeline-entry {
+                grid-template-columns: 1fr;
+                min-width: 160px;
+            }
+
+            .timeline-label {
+                align-items: center;
+                text-align: center;
+            }
+        }
+
         @media (max-width: 768px) {
             .welcome h1 {
                 font-size: 3rem;
             }
 
+            .memory-shell {
+                padding: 0 1rem 2.5rem;
+            }
+
             .memory-list {
-                padding: 1.5rem 1rem 2.5rem;
+                padding: 1rem 0 2.5rem;
                 gap: 1.25rem;
             }
 
@@ -547,9 +722,43 @@
         <p>Every moment spent with you has been magical. Let's cherish these precious memories ...</p>
     </section>
 
-    <div class="memory-list">
-        <div class="memory-container">
-            <div class="carousel-card" aria-label="First memory carousel" data-memory-date="May 6, 2022">
+    <div class="memory-shell">
+        <aside class="timeline-panel" aria-label="Relationship timeline">
+            <div class="timeline-track">
+                <button class="timeline-entry" type="button" data-milestone="first-date">
+                    <span class="timeline-dot" data-tooltip="Our first coffee together" aria-hidden="true"></span>
+                    <span class="timeline-label">
+                        <strong>💘 First Date</strong>
+                        <span>12 Mar 2024</span>
+                    </span>
+                </button>
+                <button class="timeline-entry" type="button" data-milestone="trip">
+                    <span class="timeline-dot" data-tooltip="Takeoff to new memories" aria-hidden="true"></span>
+                    <span class="timeline-label">
+                        <strong>✈️ Trip</strong>
+                        <span>26 May 2024</span>
+                    </span>
+                </button>
+                <button class="timeline-entry" type="button" data-milestone="proposal">
+                    <span class="timeline-dot" data-tooltip="A sparkling yes" aria-hidden="true"></span>
+                    <span class="timeline-label">
+                        <strong>💍 Proposal</strong>
+                        <span>05 Nov 2024</span>
+                    </span>
+                </button>
+                <button class="timeline-entry" type="button" data-milestone="anniversary">
+                    <span class="timeline-dot" data-tooltip="One year of us" aria-hidden="true"></span>
+                    <span class="timeline-label">
+                        <strong>🎉 Anniversary</strong>
+                        <span>12 Mar 2025</span>
+                    </span>
+                </button>
+            </div>
+        </aside>
+
+        <div class="memory-list">
+            <div class="memory-container">
+                <div class="carousel-card" id="milestone-first-date" data-milestone="first-date" aria-label="First memory carousel" data-memory-date="May 6, 2022">
                 <div class="carousel-header">
                     <div class="carousel-avatar">💕</div>
                     <div class="carousel-meta">
@@ -590,10 +799,10 @@
                     <div class="memory-caption"></div>
                 </div>
             </div>
-        </div>
+            </div>
 
-        <div class="memory-container">
-            <div class="carousel-card" aria-label="Second memory carousel" data-memory-date="November 12, 2023">
+            <div class="memory-container">
+                <div class="carousel-card" id="milestone-trip" data-milestone="trip" aria-label="Second memory carousel" data-memory-date="November 12, 2023">
                 <div class="carousel-header">
                     <div class="carousel-avatar">✨</div>
                     <div class="carousel-meta">
@@ -631,8 +840,47 @@
             </div>
         </div>
 
-        <div class="memory-container">
-            <div class="carousel-card" aria-label="Third memory carousel" data-memory-date="March 2, 2024">
+            <div class="memory-container">
+                <div class="carousel-card" id="milestone-proposal" data-milestone="proposal" aria-label="Proposal memory carousel" data-memory-date="November 5, 2024">
+                <div class="carousel-header">
+                    <div class="carousel-avatar">💍</div>
+                    <div class="carousel-meta">
+                        <strong>Glimmering Promise</strong>
+                        <span>A sparkling yes</span>
+                        <span class="carousel-date">November 5, 2024</span>
+                    </div>
+                    <div class="carousel-counter" aria-live="polite">1 / 3</div>
+                </div>
+
+                <div class="carousel-window">
+                    <button class="carousel-btn prev" aria-label="Previous promise">‹</button>
+                    <div class="carousel-track">
+                        <div class="carousel-slide" data-date="The Question"
+                            data-caption="A heart pounding moment, a deep breath, and a hopeful smile. 💖"> 
+                            <img src="./d3.jpg" alt="The Question">
+                        </div>
+                        <div class="carousel-slide" data-date="That Sparkle"
+                            data-caption="The ring caught the light, but your eyes shined brighter. ✨"> 
+                            <img src="./d2.jpg" alt="That Sparkle">
+                        </div>
+                        <div class="carousel-slide" data-date="Sealed With a Laugh"
+                            data-caption="We laughed through happy tears, sealing the promise together. 😊"> 
+                            <img src="./d1.jpg" alt="Sealed With a Laugh">
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" aria-label="Next promise">›</button>
+                </div>
+
+                <div class="carousel-dots" aria-label="Select promise memory"></div>
+                <div class="carousel-caption-block" aria-live="polite">
+                    <div class="memory-date"></div>
+                    <div class="memory-caption"></div>
+                </div>
+            </div>
+            </div>
+
+            <div class="memory-container">
+                <div class="carousel-card" id="milestone-anniversary" data-milestone="anniversary" aria-label="Third memory carousel" data-memory-date="March 2, 2024">
                 <div class="carousel-header">
                     <div class="carousel-avatar">🌸</div>
                     <div class="carousel-meta">
@@ -667,6 +915,7 @@
                     <div class="memory-date"></div>
                     <div class="memory-caption"></div>
                 </div>
+            </div>
             </div>
         </div>
     </div>
@@ -728,6 +977,47 @@
                 if (event.target.closest('button')) return;
                 burst(event.clientX, event.clientY);
             });
+        })();
+
+        (function setupTimeline() {
+            const timelineEntries = Array.from(document.querySelectorAll('.timeline-entry'));
+
+            timelineEntries.forEach((entry) => {
+                const milestone = entry.dataset.milestone;
+                if (!milestone) return;
+
+                entry.addEventListener('click', () => {
+                    const target = document.querySelector(`[data-milestone='${milestone}']`);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+                    }
+                });
+            });
+
+            function setActive(milestone) {
+                timelineEntries.forEach((entry) => {
+                    const isActive = entry.dataset.milestone === milestone;
+                    entry.classList.toggle('active', isActive);
+                    const dot = entry.querySelector('.timeline-dot');
+                    if (dot) dot.classList.toggle('active', isActive);
+                });
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const milestone = entry.target.dataset.milestone;
+                        if (milestone) setActive(milestone);
+                    }
+                });
+            }, { threshold: 0.55, rootMargin: '-12% 0px -12% 0px' });
+
+            document.querySelectorAll('.carousel-card[data-milestone]').forEach((card) => observer.observe(card));
+
+            const firstCard = document.querySelector('.carousel-card[data-milestone]');
+            if (firstCard && firstCard.dataset.milestone) {
+                setActive(firstCard.dataset.milestone);
+            }
         })();
 
         (function () {

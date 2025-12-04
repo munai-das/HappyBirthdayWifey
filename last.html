@@ -174,18 +174,77 @@
 
         /* Instagram-style Carousel */
         .memory-list {
-            max-width: 920px;
+            max-width: 980px;
             margin: 0 auto;
             padding: 2rem 1.5rem 3rem;
             position: relative;
             z-index: 3;
             display: flex;
             flex-direction: column;
-            gap: 1.75rem;
+            gap: 2.25rem;
+        }
+
+        .memory-list::before {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, rgba(255, 105, 180, 0.55), rgba(218, 112, 214, 0.2));
+            border-radius: 999px;
+            filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.2));
         }
 
         .memory-container {
-            padding: 0.5rem;
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            padding: 0.25rem 0.5rem 0.5rem;
+        }
+
+        .memory-container::before {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255, 105, 180, 0.3), rgba(218, 112, 214, 0.4));
+            transform: translateY(-50%);
+        }
+
+        .timeline-marker {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-self: center;
+            gap: 0.35rem;
+            color: #9b59b6;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .timeline-marker::before {
+            content: '';
+            position: absolute;
+            inset: -12px -18px;
+            background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.5), transparent 60%);
+            z-index: -1;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff69b4, #da70d6);
+            border: 4px solid #fff;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12), 0 0 0 6px rgba(255, 105, 180, 0.18);
         }
 
         .carousel-card {
@@ -502,13 +561,26 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .memory-list::before {
+                left: 18px;
+            }
+
+            .memory-container {
+                grid-template-columns: 70px 1fr;
+            }
+
+            .memory-container::before {
+                left: 18px;
+                width: 18px;
+            }
+
             .welcome h1 {
                 font-size: 3rem;
             }
 
             .memory-list {
                 padding: 1.5rem 1rem 2.5rem;
-                gap: 1.25rem;
+                gap: 1.5rem;
             }
 
             .carousel-card {
@@ -547,9 +619,13 @@
         <p>Every moment spent with you has been magical. Let's cherish these precious memories ...</p>
     </section>
 
-    <div class="memory-list">
-        <div class="memory-container">
-            <div class="carousel-card" aria-label="First memory carousel" data-memory-date="May 6, 2022">
+        <div class="memory-list">
+            <div class="memory-container">
+                <div class="timeline-marker">
+                    <div class="timeline-dot"></div>
+                    <span>May 6, 2022</span>
+                </div>
+                <div class="carousel-card" aria-label="First memory carousel" data-memory-date="May 6, 2022">
                 <div class="carousel-header">
                     <div class="carousel-avatar">💕</div>
                     <div class="carousel-meta">
@@ -592,8 +668,12 @@
             </div>
         </div>
 
-        <div class="memory-container">
-            <div class="carousel-card" aria-label="Second memory carousel" data-memory-date="November 12, 2023">
+            <div class="memory-container">
+                <div class="timeline-marker">
+                    <div class="timeline-dot"></div>
+                    <span>Nov 12, 2023</span>
+                </div>
+                <div class="carousel-card" aria-label="Second memory carousel" data-memory-date="November 12, 2023">
                 <div class="carousel-header">
                     <div class="carousel-avatar">✨</div>
                     <div class="carousel-meta">
@@ -631,8 +711,12 @@
             </div>
         </div>
 
-        <div class="memory-container">
-            <div class="carousel-card" aria-label="Third memory carousel" data-memory-date="March 2, 2024">
+            <div class="memory-container">
+                <div class="timeline-marker">
+                    <div class="timeline-dot"></div>
+                    <span>Mar 2, 2024</span>
+                </div>
+                <div class="carousel-card" aria-label="Third memory carousel" data-memory-date="March 2, 2024">
                 <div class="carousel-header">
                     <div class="carousel-avatar">🌸</div>
                     <div class="carousel-meta">

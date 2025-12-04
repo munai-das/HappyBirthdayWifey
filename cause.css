@@ -17,6 +17,20 @@ body {
     padding: 2rem;
 }
 
+.celebration-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.celebration-emoji {
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
 .custom-cursor {
     width: 30px;
     height: 30px;

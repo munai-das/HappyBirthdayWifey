@@ -5,6 +5,48 @@ document.addEventListener('mousemove', (e) => {
     cursor.style.top = e.clientY + 'px';
 });
 
+function setupCelebrationBursts() {
+    const layer = document.createElement('div');
+    layer.className = 'celebration-layer';
+    document.body.appendChild(layer);
+
+    const confetti = ['🎉', '🎊', '💖', '💗', '💝', '✨', '🌸'];
+
+    function burst(x, y) {
+        const total = 16;
+        for (let i = 0; i < total; i++) {
+            const emoji = document.createElement('span');
+            emoji.className = 'celebration-emoji';
+            emoji.textContent = confetti[Math.floor(Math.random() * confetti.length)];
+            emoji.style.left = `${x}px`;
+            emoji.style.top = `${y}px`;
+            layer.appendChild(emoji);
+
+            const angle = (Math.PI * 2 * (i / total)) + Math.random() * 0.5;
+            const distance = 80 + Math.random() * 60;
+            const targetX = Math.cos(angle) * distance;
+            const targetY = Math.sin(angle) * distance;
+
+            gsap.fromTo(emoji,
+                { scale: 0.6, opacity: 0.9 },
+                {
+                    x: targetX,
+                    y: targetY,
+                    opacity: 0,
+                    duration: 1.3,
+                    ease: 'power2.out',
+                    onComplete: () => emoji.remove()
+                }
+            );
+        }
+    }
+
+    document.addEventListener('pointerdown', (event) => {
+        if (event.target.closest('button')) return;
+        burst(event.clientX, event.clientY);
+    });
+}
+
 // Typing effect for greeting
 const greetingText = "Hey You Know What! You're the most adorable human I ever met! 💖";
 const greetingElement = document.querySelector('.greeting');
@@ -48,6 +90,8 @@ function createFloating() {
 
 // Initialize animations
 window.addEventListener('load', () => {
+    setupCelebrationBursts();
+
     // Title animation
     gsap.to('h1', {
         opacity: 1,

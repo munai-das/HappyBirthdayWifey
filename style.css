@@ -24,6 +24,20 @@ body {
     position: relative;
 }
 
+.celebration-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.celebration-emoji {
+    position: absolute;
+    font-size: 1.4rem;
+    opacity: 0;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
 .cursor {
     width: 20px;
     height: 20px;
@@ -37,6 +51,7 @@ body {
 
 .container {
     text-align: center;
+    position: relative;
     z-index: 1;
 }
 

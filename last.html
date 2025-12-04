@@ -187,7 +187,7 @@
         .memory-list::before {
             content: '';
             position: absolute;
-            left: 40px;
+            left: -28px;
             top: 0;
             bottom: 0;
             width: 4px;
@@ -197,54 +197,44 @@
         }
 
         .memory-container {
-            display: grid;
-            grid-template-columns: 110px 1fr;
-            align-items: center;
-            gap: 1rem;
             position: relative;
-            padding: 0.25rem 0.5rem 0.5rem;
+            padding-left: 0.5rem;
         }
 
         .memory-container::before {
             content: '';
             position: absolute;
-            left: 40px;
-            top: 50%;
-            width: 30px;
+            left: -16px;
+            top: 36px;
+            width: 32px;
             height: 2px;
-            background: linear-gradient(90deg, rgba(255, 105, 180, 0.3), rgba(218, 112, 214, 0.4));
-            transform: translateY(-50%);
+            background: linear-gradient(90deg, rgba(255, 105, 180, 0.25), rgba(218, 112, 214, 0.4));
         }
 
         .timeline-marker {
-            position: relative;
+            position: absolute;
+            left: -46px;
+            top: 28px;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-self: center;
-            gap: 0.35rem;
-            color: #9b59b6;
-            font-weight: 700;
-            font-size: 0.95rem;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
+            justify-content: center;
         }
 
         .timeline-marker::before {
             content: '';
             position: absolute;
-            inset: -12px -18px;
+            inset: -12px;
             background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.5), transparent 60%);
             z-index: -1;
         }
 
         .timeline-dot {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
             background: linear-gradient(135deg, #ff69b4, #da70d6);
             border: 4px solid #fff;
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12), 0 0 0 6px rgba(255, 105, 180, 0.18);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12), 0 0 0 5px rgba(255, 105, 180, 0.18);
         }
 
         .carousel-card {
@@ -289,15 +279,6 @@
         .carousel-meta span {
             font-size: 0.9rem;
             color: #888;
-        }
-
-        .carousel-date {
-            font-size: 0.9rem;
-            color: #9b59b6;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
         }
 
         .carousel-counter {
@@ -405,12 +386,6 @@
             display: flex;
             flex-direction: column;
             gap: 0.35rem;
-        }
-
-        .memory-date {
-            font-family: 'Dancing Script', cursive;
-            color: #ff69b4;
-            font-size: 1.25rem;
         }
 
         .memory-caption {
@@ -562,16 +537,16 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .memory-list::before {
-                left: 18px;
+                left: -18px;
             }
 
-            .memory-container {
-                grid-template-columns: 70px 1fr;
+            .timeline-marker {
+                left: -38px;
             }
 
             .memory-container::before {
-                left: 18px;
-                width: 18px;
+                left: -12px;
+                width: 24px;
             }
 
             .welcome h1 {
@@ -623,15 +598,13 @@
             <div class="memory-container">
                 <div class="timeline-marker">
                     <div class="timeline-dot"></div>
-                    <span>May 6, 2022</span>
                 </div>
-                <div class="carousel-card" aria-label="First memory carousel" data-memory-date="May 6, 2022">
+                <div class="carousel-card" aria-label="First memory carousel">
                 <div class="carousel-header">
                     <div class="carousel-avatar">💕</div>
                     <div class="carousel-meta">
                         <strong>Priya's Moments</strong>
                         <span>Birthday edition</span>
-                        <span class="carousel-date">May 6, 2022</span>
                     </div>
                     <div class="carousel-counter" aria-live="polite">1 / 3</div>
                 </div>
@@ -662,7 +635,6 @@
 
                 <div class="carousel-dots" aria-label="Select memory"></div>
                 <div class="carousel-caption-block" aria-live="polite">
-                    <div class="memory-date"></div>
                     <div class="memory-caption"></div>
                 </div>
             </div>
@@ -671,15 +643,13 @@
             <div class="memory-container">
                 <div class="timeline-marker">
                     <div class="timeline-dot"></div>
-                    <span>Nov 12, 2023</span>
                 </div>
-                <div class="carousel-card" aria-label="Second memory carousel" data-memory-date="November 12, 2023">
+                <div class="carousel-card" aria-label="Second memory carousel">
                 <div class="carousel-header">
                     <div class="carousel-avatar">✨</div>
                     <div class="carousel-meta">
                         <strong>Cozy Adventures</strong>
                         <span>Weekend getaways</span>
-                        <span class="carousel-date">November 12, 2023</span>
                     </div>
                     <div class="carousel-counter" aria-live="polite">1 / 3</div>
                 </div>
@@ -705,7 +675,6 @@
 
                 <div class="carousel-dots" aria-label="Select adventure"></div>
                 <div class="carousel-caption-block" aria-live="polite">
-                    <div class="memory-date"></div>
                     <div class="memory-caption"></div>
                 </div>
             </div>
@@ -714,15 +683,13 @@
             <div class="memory-container">
                 <div class="timeline-marker">
                     <div class="timeline-dot"></div>
-                    <span>Mar 2, 2024</span>
                 </div>
-                <div class="carousel-card" aria-label="Third memory carousel" data-memory-date="March 2, 2024">
+                <div class="carousel-card" aria-label="Third memory carousel">
                 <div class="carousel-header">
                     <div class="carousel-avatar">🌸</div>
                     <div class="carousel-meta">
                         <strong>Blooming Days</strong>
                         <span>Spring snapshots</span>
-                        <span class="carousel-date">March 2, 2024</span>
                     </div>
                     <div class="carousel-counter" aria-live="polite">1 / 3</div>
                 </div>
@@ -748,7 +715,6 @@
 
                 <div class="carousel-dots" aria-label="Select bloom"></div>
                 <div class="carousel-caption-block" aria-live="polite">
-                    <div class="memory-date"></div>
                     <div class="memory-caption"></div>
                 </div>
             </div>
@@ -821,17 +787,11 @@
                 const track = carousel.querySelector('.carousel-track');
                 const dotsContainer = carousel.querySelector('.carousel-dots');
                 const captionEl = carousel.querySelector('.memory-caption');
-                const dateEl = carousel.querySelector('.memory-date');
                 const counterEl = carousel.querySelector('.carousel-counter');
                 const prevBtn = carousel.querySelector('.carousel-btn.prev');
                 const nextBtn = carousel.querySelector('.carousel-btn.next');
-                const headerDate = carousel.querySelector('.carousel-date');
 
                 if (!track || !dotsContainer || !prevBtn || !nextBtn) return;
-
-                if (headerDate && carousel.dataset.memoryDate) {
-                    headerDate.textContent = carousel.dataset.memoryDate;
-                }
 
                 const slides = Array.from(track.querySelectorAll('.carousel-slide'));
                 let currentIndex = 0;
@@ -853,8 +813,7 @@
                     track.style.transform = `translateX(-${currentIndex * 100}%)`;
                     dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === currentIndex));
 
-                    const { caption, date } = slides[currentIndex].dataset;
-                    if (dateEl) dateEl.textContent = date;
+                    const { caption } = slides[currentIndex].dataset;
                     if (captionEl) captionEl.textContent = caption;
                     if (counterEl) counterEl.textContent = `${currentIndex + 1} / ${total}`;
                 }

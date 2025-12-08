@@ -487,7 +487,7 @@
             position: relative;
             width: 220px;
             height: 180px;
-            perspective: 900px;
+            perspective: 1400px;
             transition: transform 0.6s ease;
         }
 
@@ -506,10 +506,37 @@
             width: 100%;
             height: 72%;
             border-radius: 18px;
-            background: linear-gradient(135deg, #ffb3d9, #ff7ac4 45%, #d0a6ff 100%);
-            box-shadow: 0 18px 26px rgba(255, 105, 180, 0.35), 0 10px 30px rgba(154, 93, 255, 0.22);
+            background: linear-gradient(135deg, #ffd3e8 0%, #ff8acb 40%, #d6b4ff 100%);
+            box-shadow: 0 18px 26px rgba(255, 105, 180, 0.35), 0 12px 28px rgba(97, 67, 133, 0.18);
             overflow: hidden;
             z-index: 1;
+            transform-style: preserve-3d;
+        }
+
+        .box-body::before,
+        .box-body::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #ffa9d6, #d19bff);
+            transform-origin: left;
+            z-index: -1;
+        }
+
+        .box-body::before {
+            width: 26%;
+            left: -26%;
+            filter: brightness(0.92);
+            transform: skewY(-10deg) rotateY(78deg);
+            box-shadow: inset -14px 0 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .box-body::after {
+            height: 26%;
+            top: 74%;
+            filter: brightness(0.88);
+            transform: skewX(-8deg) rotateX(86deg);
+            box-shadow: inset 0 -14px 24px rgba(0, 0, 0, 0.08);
         }
 
         .ribbon-vertical,
@@ -562,6 +589,7 @@
             transform-origin: center left;
             transition: transform 0.6s ease, box-shadow 0.6s ease;
             z-index: 2;
+            transform-style: preserve-3d;
         }
 
         .lid-top {
@@ -570,6 +598,15 @@
             border-radius: 18px 18px 12px 12px;
             background: linear-gradient(135deg, #ff9bd6, #ff6fbf 45%, #c38cff 100%);
             box-shadow: 0 12px 18px rgba(255, 105, 180, 0.3);
+        }
+
+        .lid-top::before {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
+            box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
         }
 
         .lid-ribbon {
@@ -583,16 +620,68 @@
 
         .gift-message {
             position: absolute;
-            top: 50%;
+            top: 40%;
             left: 50%;
-            transform: translate(-50%, -40%) scale(0.85);
+            transform: translate(-50%, -20%) scale(0.85);
             font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
-            color: #ff3f9c;
-            text-shadow: 0 6px 14px rgba(255, 105, 180, 0.35);
+            font-size: 2.2rem;
+            color: #ff1f87;
+            text-shadow: 0 8px 18px rgba(255, 105, 180, 0.55);
             opacity: 0;
-            transition: opacity 0.45s ease 0.15s, transform 0.45s ease 0.15s;
+            display: flex;
+            gap: 0.15em;
+            transition: transform 0.45s ease 0.15s;
             z-index: 3;
+        }
+
+        .gift-message .letter {
+            opacity: 0;
+            transform: translateY(24px) scale(0.8);
+        }
+
+        .gift-message .letter:nth-child(2) {
+            animation-delay: 0.08s;
+        }
+
+        .gift-message .letter:nth-child(3) {
+            animation-delay: 0.16s;
+        }
+
+        .gift-message .letter:nth-child(4) {
+            animation-delay: 0.24s;
+        }
+
+        .gift-message .letter:nth-child(5) {
+            animation-delay: 0.32s;
+        }
+
+        .gift-message .letter:nth-child(6) {
+            animation-delay: 0.4s;
+        }
+
+        .gift-message .letter:nth-child(7) {
+            animation-delay: 0.48s;
+        }
+
+        .gift-message .letter:nth-child(8) {
+            animation-delay: 0.56s;
+        }
+
+        @keyframes floatLetter {
+            0% {
+                opacity: 0;
+                transform: translateY(24px) scale(0.8);
+            }
+
+            70% {
+                opacity: 1;
+                transform: translateY(-12px) scale(1.05);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .gift-box.open .lid {
@@ -603,6 +692,64 @@
         .gift-box.open .gift-message {
             opacity: 1;
             transform: translate(-50%, -120%) scale(1);
+        }
+
+        .gift-box.open .gift-message .letter {
+            animation: floatLetter 0.6s ease forwards;
+        }
+
+        .fireworks-layer,
+        .confetti-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .firework-emoji {
+            position: absolute;
+            font-size: clamp(1.4rem, 2vw, 1.9rem);
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
+            animation: popFirework 1s ease-out forwards;
+        }
+
+        @keyframes popFirework {
+            0% {
+                transform: translate(-50%, -50%) scale(0.4);
+                opacity: 0;
+            }
+
+            60% {
+                transform: translate(-50%, -120%) scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(-50%, -200%) scale(0.9);
+                opacity: 0;
+            }
+        }
+
+        .confetti-piece {
+            position: absolute;
+            font-size: clamp(1.2rem, 2vw, 1.6rem);
+            animation: fallConfetti 1.3s ease-in forwards;
+        }
+
+        @keyframes fallConfetti {
+            0% {
+                transform: translateY(-20px) rotate(0deg);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(140px) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         .gift-box.open .box-body {
@@ -855,7 +1002,17 @@
                     <div class="ribbon-vertical"></div>
                     <div class="ribbon-horizontal"></div>
                     <div class="gift-heart">🎀</div>
-                    <div class="gift-message">Eu te amo</div>
+                    <div class="gift-message" aria-live="polite">
+                        <span class="letter">E</span>
+                        <span class="letter">u</span>
+                        <span class="letter"> </span>
+                        <span class="letter">t</span>
+                        <span class="letter">e</span>
+                        <span class="letter"> </span>
+                        <span class="letter">a</span>
+                        <span class="letter">m</span>
+                        <span class="letter">o</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -971,13 +1128,58 @@
             const goodbyeBtn = document.querySelector('.goodbye-btn');
             const overlay = document.querySelector('.gift-overlay');
             const giftBox = overlay?.querySelector('.gift-box');
+            const fireworksLayer = document.createElement('div');
+            const confettiLayer = document.createElement('div');
+
+            fireworksLayer.className = 'fireworks-layer';
+            confettiLayer.className = 'confetti-layer';
+
+            overlay?.appendChild(fireworksLayer);
+            overlay?.appendChild(confettiLayer);
 
             if (!goodbyeBtn || !overlay || !giftBox) return;
+
+            const fireworks = ['🎆', '🎇', '✨'];
+            const confetti = ['🎉', '🎊', '💖', '💝', '✨'];
+
+            function spawnFireworks() {
+                const bounds = overlay.getBoundingClientRect();
+                const centerX = bounds.width / 2;
+                const centerY = bounds.height / 2;
+
+                fireworksLayer.innerHTML = '';
+                confettiLayer.innerHTML = '';
+
+                for (let i = 0; i < 8; i++) {
+                    const firework = document.createElement('span');
+                    firework.className = 'firework-emoji';
+                    firework.textContent = fireworks[Math.floor(Math.random() * fireworks.length)];
+                    const angle = (Math.PI * 2 * (i / 8)) + Math.random() * 0.5;
+                    const radius = 40 + Math.random() * 30;
+                    const x = centerX + Math.cos(angle) * radius;
+                    const y = centerY + Math.sin(angle) * radius;
+                    firework.style.left = `${x}px`;
+                    firework.style.top = `${y}px`;
+                    fireworksLayer.appendChild(firework);
+                }
+
+                for (let i = 0; i < 30; i++) {
+                    const piece = document.createElement('span');
+                    piece.className = 'confetti-piece';
+                    piece.textContent = confetti[Math.floor(Math.random() * confetti.length)];
+                    const spread = 120;
+                    piece.style.left = `${centerX + (Math.random() * spread - spread / 2)}px`;
+                    piece.style.top = `${centerY + (Math.random() * 30 - 15)}px`;
+                    piece.style.animationDelay = `${Math.random() * 0.25}s`;
+                    confettiLayer.appendChild(piece);
+                }
+            }
 
             function openGift() {
                 overlay.classList.add('visible');
                 overlay.setAttribute('aria-hidden', 'false');
                 requestAnimationFrame(() => giftBox.classList.add('open'));
+                spawnFireworks();
             }
 
             function closeGift() {

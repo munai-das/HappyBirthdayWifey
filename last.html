@@ -620,18 +620,22 @@
 
         .gift-message {
             position: absolute;
-            top: 40%;
+            top: 46%;
             left: 50%;
-            transform: translate(-50%, -20%) scale(0.85);
+            transform: translate(-50%, -10%) scale(0.9);
             font-family: 'Dancing Script', cursive;
-            font-size: 2.2rem;
-            color: #ff1f87;
-            text-shadow: 0 8px 18px rgba(255, 105, 180, 0.55);
+            font-size: 2.35rem;
+            color: #ff0f8f;
+            text-shadow:
+                0 3px 12px rgba(0, 0, 0, 0.18),
+                0 10px 20px rgba(255, 105, 180, 0.55);
             opacity: 0;
             display: flex;
-            gap: 0.15em;
-            transition: transform 0.45s ease 0.15s;
-            z-index: 3;
+            gap: 0.18em;
+            letter-spacing: 0.02em;
+            transition: transform 0.45s ease 0.15s, opacity 0.3s ease;
+            z-index: 4;
+            pointer-events: none;
         }
 
         .gift-message .letter {
@@ -691,7 +695,7 @@
 
         .gift-box.open .gift-message {
             opacity: 1;
-            transform: translate(-50%, -120%) scale(1);
+            transform: translate(-50%, -125%) scale(1.05);
         }
 
         .gift-box.open .gift-message .letter {
@@ -998,21 +1002,21 @@
                     <div class="lid-top"></div>
                     <div class="lid-ribbon"></div>
                 </div>
+                <div class="gift-message" aria-live="polite">
+                    <span class="letter">E</span>
+                    <span class="letter">u</span>
+                    <span class="letter"> </span>
+                    <span class="letter">t</span>
+                    <span class="letter">e</span>
+                    <span class="letter"> </span>
+                    <span class="letter">a</span>
+                    <span class="letter">m</span>
+                    <span class="letter">o</span>
+                </div>
                 <div class="box-body">
                     <div class="ribbon-vertical"></div>
                     <div class="ribbon-horizontal"></div>
                     <div class="gift-heart">🎀</div>
-                    <div class="gift-message" aria-live="polite">
-                        <span class="letter">E</span>
-                        <span class="letter">u</span>
-                        <span class="letter"> </span>
-                        <span class="letter">t</span>
-                        <span class="letter">e</span>
-                        <span class="letter"> </span>
-                        <span class="letter">a</span>
-                        <span class="letter">m</span>
-                        <span class="letter">o</span>
-                    </div>
                 </div>
             </div>
         </div>

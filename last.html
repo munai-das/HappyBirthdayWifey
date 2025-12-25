@@ -398,26 +398,42 @@
             line-height: 1.8;
         }
 
-        .audio-player {
+        .audio-carousel {
             position: relative;
             z-index: 3;
-            max-width: 500px;
+            max-width: 680px;
             margin: 2rem auto 0;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 16px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 0 1.5rem;
         }
 
-        .audio-player h3 {
-            font-family: 'Dancing Script', cursive;
+        .audio-card .carousel-slide {
+            aspect-ratio: auto;
+            min-height: 220px;
+            padding: 1rem;
+        }
+
+        .audio-card .carousel-window {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.18), rgba(230, 230, 250, 0.4));
+        }
+
+        .audio-slide-content {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 18px;
+            padding: 1.25rem;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .audio-slide-content h4 {
+            font-size: 1.15rem;
             color: #ff69b4;
-            font-size: 1.8rem;
             text-align: center;
-            margin-bottom: 0.75rem;
         }
 
-        .audio-player audio {
+        .audio-slide-content audio {
             width: 100%;
             border-radius: 12px;
         }
@@ -831,6 +847,14 @@
                 height: 36px;
             }
 
+            .audio-carousel {
+                padding: 0 1rem;
+            }
+
+            .audio-card .carousel-slide {
+                min-height: 200px;
+            }
+
             .final-message h2 {
                 font-size: 2.5rem;
             }
@@ -978,12 +1002,61 @@
         </div>
     </div>
 
-    <section class="audio-player" aria-label="Birthday song">
-        <h3>A Song For You 🎶</h3>
-        <audio controls>
-            <source src="./music.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
+    <section class="audio-carousel" aria-label="Birthday playlist">
+        <div class="carousel-card audio-card" aria-label="Birthday playlist carousel" data-memory-date="Your Playlist">
+            <div class="carousel-header">
+                <div class="carousel-avatar">🎶</div>
+                <div class="carousel-meta">
+                    <strong>A Song For You</strong>
+                    <span>Swipe through the playlist</span>
+                    <span class="carousel-date">Your Playlist</span>
+                </div>
+                <div class="carousel-counter" aria-live="polite">1 / 3</div>
+            </div>
+
+            <div class="carousel-window">
+                <button class="carousel-btn prev" aria-label="Previous song">‹</button>
+                <div class="carousel-track">
+                    <div class="carousel-slide" data-date="Sweet Wishes"
+                        data-caption="A soft tune for the sweetest birthday wishes. 💕">
+                        <div class="audio-slide-content">
+                            <h4>Sweet Wishes</h4>
+                            <audio controls preload="none">
+                                <source src="./music.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                    <div class="carousel-slide" data-date="Sunset Serenade"
+                        data-caption="Play this when the sky turns rosy and everything feels magical. 🌅">
+                        <div class="audio-slide-content">
+                            <h4>Sunset Serenade</h4>
+                            <audio controls preload="none">
+                                <source src="./music.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                    <div class="carousel-slide" data-date="Forever Shine"
+                        data-caption="A joyful melody to remind you how much you sparkle. ✨">
+                        <div class="audio-slide-content">
+                            <h4>Forever Shine</h4>
+                            <audio controls preload="none">
+                                <source src="./music.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn next" aria-label="Next song">›</button>
+            </div>
+
+            <div class="carousel-dots" aria-label="Select song"></div>
+            <div class="carousel-caption-block" aria-live="polite">
+                <div class="memory-date"></div>
+                <div class="memory-caption"></div>
+            </div>
+        </div>
     </section>
 
     <section class="final-message">
@@ -1122,7 +1195,7 @@
                     if (Math.abs(diff) > 40) {
                         goToSlide(diff > 0 ? currentIndex - 1 : currentIndex + 1);
                     }
-            });
+                });
 
             goToSlide(0);
         });

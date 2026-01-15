@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Beautiful Memories ✨</title>
+    <title data-en="Our Beautiful Memories ✨" data-pt="Nossas lindas memórias ✨">Our Beautiful Memories ✨</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;400;500;600&display=swap');
@@ -28,6 +28,33 @@
             font-family: 'Quicksand', sans-serif;
             overflow-x: hidden;
             color: #4a4a4a;
+        }
+
+        .language-toggle {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 10;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #ff69b4;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(255, 105, 180, 0.25);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .language-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 22px rgba(255, 105, 180, 0.35);
+        }
+
+        .language-toggle:focus-visible {
+            outline: 3px solid rgba(255, 105, 180, 0.5);
+            outline-offset: 3px;
         }
 
         .celebration-layer {
@@ -839,6 +866,7 @@
 </head>
 
 <body>
+    <button class="language-toggle" type="button" aria-pressed="false">PT-BR</button>
     <div class="magic-sparkles"></div>
     <div class="floating-hearts">
         <!-- Hearts will be generated via CSS -->
@@ -850,51 +878,51 @@
     </div>
 
     <section class="welcome">
-        <h1>Our Beautiful Moments Together</h1>
-        <p>Every moment spent with you has been magical. Let's cherish these precious memories ...</p>
+        <h1 data-en="Our Beautiful Moments Together" data-pt="Nossos lindos momentos juntos">Our Beautiful Moments Together</h1>
+        <p data-en="Every moment spent with you has been magical. Let's cherish these precious memories ..." data-pt="Cada momento com você foi mágico. Vamos guardar com carinho essas memórias preciosas ...">Every moment spent with you has been magical. Let's cherish these precious memories ...</p>
     </section>
 
     <div class="memory-list">
         <div class="memory-container">
-            <div class="carousel-card" aria-label="First memory carousel" data-memory-date="Oct,2024 - April,2025">
+            <div class="carousel-card" aria-label="First memory carousel" data-aria-en="First memory carousel" data-aria-pt="Carrossel da primeira memória" data-memory-date="Oct,2024 - April,2025" data-memory-date-en="Oct,2024 - April,2025" data-memory-date-pt="Out,2024 - Abril,2025">
                 <div class="carousel-header">
                     <div class="carousel-avatar">💕</div>
                     <div class="carousel-meta">
-                        <strong>Our previous first semester</strong>
-                        <span>Birthday edition</span>
-                        <span class="carousel-date">Oct 11, 2024</span>
+                        <strong data-en="Our previous first semester" data-pt="Nosso primeiro semestre juntos">Our previous first semester</strong>
+                        <span data-en="Birthday edition" data-pt="Edição de aniversário">Birthday edition</span>
+                        <span class="carousel-date" data-en="Oct 11, 2024" data-pt="11 de outubro de 2024">Oct 11, 2024</span>
                     </div>
                     <div class="carousel-counter" aria-live="polite">1 / 3</div>
                 </div>
 
                 <div class="carousel-window">
-                    <button class="carousel-btn prev" aria-label="Previous memory">‹</button>
+                    <button class="carousel-btn prev" aria-label="Previous memory" data-aria-en="Previous memory" data-aria-pt="Memória anterior">‹</button>
                     <div class="carousel-track">
-                        <div class="carousel-slide" data-date="Bejios to end every call"
-                            data-caption="Your kisses still and will always lift up my days.😊💕">
-                            <img src="./1.jpg" alt="Bejios to end every call">
+                        <div class="carousel-slide" data-date="Bejios to end every call" data-date-en="Bejios to end every call" data-date-pt="Beijinhos para terminar cada chamada"
+                            data-caption="Your kisses still and will always lift up my days.😊💕" data-caption-en="Your kisses still and will always lift up my days.😊💕" data-caption-pt="Seus beijos sempre elevam os meus dias. 😊💕">
+                            <img src="./1.jpg" alt="Bejios to end every call" data-alt-en="Bejios to end every call" data-alt-pt="Beijinhos para terminar cada chamada">
                         </div>
-                        <div class="carousel-slide" data-date="Birthday vibes, NFL edition"
-                            data-caption="My birthday and the Superbowl.😊💕">
-                            <img src="./4.png" alt="Birthday vibes, NFL edition">
+                        <div class="carousel-slide" data-date="Birthday vibes, NFL edition" data-date-en="Birthday vibes, NFL edition" data-date-pt="Vibes de aniversário, edição NFL"
+                            data-caption="My birthday and the Superbowl.😊💕" data-caption-en="My birthday and the Superbowl.😊💕" data-caption-pt="Meu aniversário e o Super Bowl. 😊💕">
+                            <img src="./4.png" alt="Birthday vibes, NFL edition" data-alt-en="Birthday vibes, NFL edition" data-alt-pt="Vibes de aniversário, edição NFL">
                         </div>
-                        <div class="carousel-slide" data-date="Cooking Together"
-                            data-caption="Introduction to my brazilian better half through cooking.🌸💖">
-                            <img src="./2.jpg" alt="Cooking Together">
+                        <div class="carousel-slide" data-date="Cooking Together" data-date-en="Cooking Together" data-date-pt="Cozinhando juntos"
+                            data-caption="Introduction to my brazilian better half through cooking.🌸💖" data-caption-en="Introduction to my brazilian better half through cooking.🌸💖" data-caption-pt="Conhecendo minha metade brasileira através da cozinha. 🌸💖">
+                            <img src="./2.jpg" alt="Cooking Together" data-alt-en="Cooking Together" data-alt-pt="Cozinhando juntos">
                         </div>
-                        <div class="carousel-slide" data-date="Brazilian Snacks haul!"
-                            data-caption="Not sure why I got the Maizena for kkkkkk, Bis Branco is still my favourite.😊💕">
-                            <img src="./3.jpg" alt="Brazilian Snacks haul!">
+                        <div class="carousel-slide" data-date="Brazilian Snacks haul!" data-date-en="Brazilian Snacks haul!" data-date-pt="Comprinhas de snacks brasileiros!"
+                            data-caption="Not sure why I got the Maizena for kkkkkk, Bis Branco is still my favourite.😊💕" data-caption-en="Not sure why I got the Maizena for kkkkkk, Bis Branco is still my favourite.😊💕" data-caption-pt="Nem sei por que peguei Maizena kkkkkk, Bis Branco continua sendo meu favorito. 😊💕">
+                            <img src="./3.jpg" alt="Brazilian Snacks haul!" data-alt-en="Brazilian Snacks haul!" data-alt-pt="Comprinhas de snacks brasileiros!">
                         </div>
-                        <div class="carousel-slide" data-date="Endless Movie Dates!"
-                            data-caption="In some occasions Gordo will join us.😊💕">
-                            <img src="./5.png" alt="Endless Movie Dates!">
+                        <div class="carousel-slide" data-date="Endless Movie Dates!" data-date-en="Endless Movie Dates!" data-date-pt="Encontros infinitos de filme!"
+                            data-caption="In some occasions Gordo will join us.😊💕" data-caption-en="In some occasions Gordo will join us.😊💕" data-caption-pt="Em algumas ocasiões o Gordo vai se juntar a nós. 😊💕">
+                            <img src="./5.png" alt="Endless Movie Dates!" data-alt-en="Endless Movie Dates!" data-alt-pt="Encontros infinitos de filme!">
                         </div>
                     </div>
-                    <button class="carousel-btn next" aria-label="Next memory">›</button>
+                    <button class="carousel-btn next" aria-label="Next memory" data-aria-en="Next memory" data-aria-pt="Próxima memória">›</button>
                 </div>
 
-                <div class="carousel-dots" aria-label="Select memory"></div>
+                <div class="carousel-dots" aria-label="Select memory" data-aria-en="Select memory" data-aria-pt="Selecionar memória"></div>
                 <div class="carousel-caption-block" aria-live="polite">
                     <div class="memory-date"></div>
                     <div class="memory-caption"></div>
@@ -903,61 +931,61 @@
         </div>
 
         <div class="memory-container">
-            <div class="carousel-card" aria-label="Second memory carousel" data-memory-date="April,2025 - Sept,2025">
+            <div class="carousel-card" aria-label="Second memory carousel" data-aria-en="Second memory carousel" data-aria-pt="Carrossel da segunda memória" data-memory-date="April,2025 - Sept,2025" data-memory-date-en="April,2025 - Sept,2025" data-memory-date-pt="Abril,2025 - Set,2025">
                 <div class="carousel-header">
                     <div class="carousel-avatar">✨</div>
                     <div class="carousel-meta">
-                        <strong>Flowers and Milestones</strong>
-                        <span>Weekend getaways</span>
-                        <span class="carousel-date">November 12, 2023</span>
+                        <strong data-en="Flowers and Milestones" data-pt="Flores e Conquistas">Flowers and Milestones</strong>
+                        <span data-en="Weekend getaways" data-pt="Escapadas de fim de semana">Weekend getaways</span>
+                        <span class="carousel-date" data-en="November 12, 2023" data-pt="12 de novembro de 2023">November 12, 2023</span>
                     </div>
                     <div class="carousel-counter" aria-live="polite">1 / 3</div>
                 </div>
 
                 <div class="carousel-window">
-                    <button class="carousel-btn prev" aria-label="Previous adventure">‹</button>
+                    <button class="carousel-btn prev" aria-label="Previous adventure" data-aria-en="Previous adventure" data-aria-pt="Aventura anterior">‹</button>
                     <div class="carousel-track">
-                        <div class="carousel-slide" data-date="First Flowers"
-                            data-caption="CPF = Couples Prevention Force 💔🌠">
-                            <img src="./7.jpg" alt="First Flowers">
+                        <div class="carousel-slide" data-date="First Flowers" data-date-en="First Flowers" data-date-pt="Primeiras flores"
+                            data-caption="CPF = Couples Prevention Force 💔🌠" data-caption-en="CPF = Couples Prevention Force 💔🌠" data-caption-pt="CPF = Força de Prevenção de Casais 💔🌠">
+                            <img src="./7.jpg" alt="First Flowers" data-alt-en="First Flowers" data-alt-pt="Primeiras flores">
                         </div>
-                        <div class="carousel-slide" data-date="Dia Dos Namorados"
-                            data-caption="First Namorados away but flowers and Zuzinho spoke of out our love ☕️🌧️">
-                            <img src="./9.jpg" alt="Dia dos Namorados">
+                        <div class="carousel-slide" data-date="Dia Dos Namorados" data-date-en="Dia Dos Namorados" data-date-pt="Dia dos Namorados"
+                            data-caption="First Namorados away but flowers and Zuzinho spoke of out our love ☕️🌧️" data-caption-en="First Namorados away but flowers and Zuzinho spoke of out our love ☕️🌧️" data-caption-pt="Primeiro Namorados longe, mas as flores e o Zuzinho falaram do nosso amor ☕️🌧️">
+                            <img src="./9.jpg" alt="Dia dos Namorados" data-alt-en="Dia Dos Namorados" data-alt-pt="Dia dos Namorados">
                         </div>
-                        <div class="carousel-slide" data-date="Damasco 🔪🔪"
-                            data-caption="I hate Damasco! 💕">
-                            <img src="./10.jpg" alt="Lazy Sunday Laughs">
+                        <div class="carousel-slide" data-date="Damasco 🔪🔪" data-date-en="Damasco 🔪🔪" data-date-pt="Damasco 🔪🔪"
+                            data-caption="I hate Damasco! 💕" data-caption-en="I hate Damasco! 💕" data-caption-pt="Eu odeio damasco! 💕">
+                            <img src="./10.jpg" alt="Damasco 🔪🔪" data-alt-en="Damasco 🔪🔪" data-alt-pt="Damasco 🔪🔪">
                         </div>
-                        <div class="carousel-slide" data-date="Flowers without Occasions"
-                            data-caption="Flowers with you don't need ocassions, some where sent to remind how pretty minha princesa! 💕">
-                            <img src="./8.jpg" alt="Flowers without Occasions">
+                        <div class="carousel-slide" data-date="Flowers without Occasions" data-date-en="Flowers without Occasions" data-date-pt="Flores sem ocasião"
+                            data-caption="Flowers with you don't need ocassions, some where sent to remind how pretty minha princesa! 💕" data-caption-en="Flowers with you don't need ocassions, some where sent to remind how pretty minha princesa! 💕" data-caption-pt="Flores com você não precisam de ocasião; algumas foram enviadas só para lembrar como minha princesa é linda! 💕">
+                            <img src="./8.jpg" alt="Flowers without Occasions" data-alt-en="Flowers without Occasions" data-alt-pt="Flores sem ocasião">
                         </div>
-                        <div class="carousel-slide" data-date="Moment you got the FAPESP scholarship"
-                            data-caption="Will always be proud of you my Dr Ester Duenha. 💕">
-                            <img src="./11.jpg" alt="Moment you got the FAPESP scholarship">
+                        <div class="carousel-slide" data-date="Moment you got the FAPESP scholarship" data-date-en="Moment you got the FAPESP scholarship" data-date-pt="Momento em que você ganhou a bolsa FAPESP"
+                            data-caption="Will always be proud of you my Dr Ester Duenha. 💕" data-caption-en="Will always be proud of you my Dr Ester Duenha. 💕" data-caption-pt="Sempre vou ter orgulho de você, minha Dra. Ester Duenha. 💕">
+                            <img src="./11.jpg" alt="Moment you got the FAPESP scholarship" data-alt-en="Moment you got the FAPESP scholarship" data-alt-pt="Momento em que você ganhou a bolsa FAPESP">
                         </div>
-                        <div class="carousel-slide" data-date="Sick Days"
-                            data-caption="Not even sick days can keep us apart. That onion juice looks nasty though. 💕">
-                            <img src="./12.png" alt="Sick Days">
+                        <div class="carousel-slide" data-date="Sick Days" data-date-en="Sick Days" data-date-pt="Dias de doença"
+                            data-caption="Not even sick days can keep us apart. That onion juice looks nasty though. 💕" data-caption-en="Not even sick days can keep us apart. That onion juice looks nasty though. 💕" data-caption-pt="Nem os dias de doença conseguem nos separar. Mas aquele suco de cebola parece horrível. 💕">
+                            <img src="./12.png" alt="Sick Days" data-alt-en="Sick Days" data-alt-pt="Dias de doença">
                         </div>
-                        <div class="carousel-slide" data-date="Hiking Calls"
-                            data-caption="We spared time for each other even on hiking trips 💕">
-                            <img src="./14.mp4" alt="Hiking Calls">
+                        <div class="carousel-slide" data-date="Hiking Calls" data-date-en="Hiking Calls" data-date-pt="Ligações nas trilhas"
+                            data-caption="We spared time for each other even on hiking trips 💕" data-caption-en="We spared time for each other even on hiking trips 💕" data-caption-pt="Arranjamos tempo um para o outro até nas trilhas. 💕">
+                            <img src="./14.mp4" alt="Hiking Calls" data-alt-en="Hiking Calls" data-alt-pt="Ligações nas trilhas">
                         </div>
-                        <div class="carousel-slide" data-date="Hiking Calls 2"
-                            data-caption="Always found it how cute your looked finding the birds 💕">
-                            <img src="./15.jpg" alt="Hiking Calls 2">
+                        <div class="carousel-slide" data-date="Hiking Calls 2" data-date-en="Hiking Calls 2" data-date-pt="Ligações nas trilhas 2"
+                            data-caption="Always found it how cute your looked finding the birds 💕" data-caption-en="Always found it how cute your looked finding the birds 💕" data-caption-pt="Sempre achei tão fofo você procurando os pássaros. 💕">
+                            <img src="./15.jpg" alt="Hiking Calls 2" data-alt-en="Hiking Calls 2" data-alt-pt="Ligações nas trilhas 2">
                         </div>
-                        <div class="carousel-slide" data-date="Cuteness Overload"
-                            data-caption="My heart cannot take such Cuteness 💕">
-                            <img src="./16.png" alt="Cuteness Overload">
+                        <div class="carousel-slide" data-date="Cuteness Overload" data-date-en="Cuteness Overload" data-date-pt="Sobrecarga de fofura"
+                            data-caption="My heart cannot take such Cuteness 💕" data-caption-en="My heart cannot take such Cuteness 💕" data-caption-pt="Meu coração não aguenta tanta fofura. 💕">
+                            <img src="./16.png" alt="Cuteness Overload" data-alt-en="Cuteness Overload" data-alt-pt="Sobrecarga de fofura">
                         </div>
                     </div>
-                    <button class="carousel-btn next" aria-label="Next adventure">›</button>
+                    <button class="carousel-btn next" aria-label="Next adventure" data-aria-en="Next adventure" data-aria-pt="Próxima aventura">›</button>
                 </div>
 
-                <div class="carousel-dots" aria-label="Select adventure"></div>
+                <div class="carousel-dots" aria-label="Select adventure" data-aria-en="Select adventure" data-aria-pt="Selecionar aventura"></div>
                 <div class="carousel-caption-block" aria-live="polite">
                     <div class="memory-date"></div>
                     <div class="memory-caption"></div>
@@ -966,67 +994,67 @@
         </div>
 
         <div class="memory-container">
-            <div class="carousel-card" aria-label="Third memory carousel" data-memory-date="March 2, 2024">
+            <div class="carousel-card" aria-label="Third memory carousel" data-aria-en="Third memory carousel" data-aria-pt="Carrossel da terceira memória" data-memory-date="March 2, 2024" data-memory-date-en="March 2, 2024" data-memory-date-pt="2 de março de 2024">
                 <div class="carousel-header">
                     <div class="carousel-avatar">🌸</div>
                     <div class="carousel-meta">
-                        <strong>The Trip</strong>
-                        <span>Spring snapshots</span>
-                        <span class="carousel-date">September,2025 - present</span>
+                        <strong data-en="The Trip" data-pt="A Viagem">The Trip</strong>
+                        <span data-en="Spring snapshots" data-pt="Momentos de primavera">Spring snapshots</span>
+                        <span class="carousel-date" data-en="September,2025 - present" data-pt="Setembro,2025 - presente">September,2025 - present</span>
                     </div>
                     <div class="carousel-counter" aria-live="polite">1 / 3</div>
                 </div>
 
                 <div class="carousel-window">
-                    <button class="carousel-btn prev" aria-label="Previous bloom">‹</button>
+                    <button class="carousel-btn prev" aria-label="Previous bloom" data-aria-en="Previous bloom" data-aria-pt="Momento anterior">‹</button>
                     <div class="carousel-track">
-                        <div class="carousel-slide" data-date="Indian Princess"
-                            data-caption="You look like an exotic Indian Princess, better than my dreams🌷">
-                            <img src="./17.jpg" alt="Indian Princess">
+                        <div class="carousel-slide" data-date="Indian Princess" data-date-en="Indian Princess" data-date-pt="Princesa indiana"
+                            data-caption="You look like an exotic Indian Princess, better than my dreams🌷" data-caption-en="You look like an exotic Indian Princess, better than my dreams🌷" data-caption-pt="Você parece uma princesa indiana exótica, melhor do que os meus sonhos 🌷">
+                            <img src="./17.jpg" alt="Indian Princess" data-alt-en="Indian Princess" data-alt-pt="Princesa indiana">
                         </div>
-                        <div class="carousel-slide" data-date="First Dinner Together"
-                            data-caption="Got introduced to your love for schweppes. 🌿😊">
-                            <img src="./18.jpg" alt="First Dinner Together">
+                        <div class="carousel-slide" data-date="First Dinner Together" data-date-en="First Dinner Together" data-date-pt="Primeiro jantar juntos"
+                            data-caption="Got introduced to your love for schweppes. 🌿😊" data-caption-en="Got introduced to your love for schweppes. 🌿😊" data-caption-pt="Conheci o seu amor por Schweppes. 🌿😊">
+                            <img src="./18.jpg" alt="First Dinner Together" data-alt-en="First Dinner Together" data-alt-pt="Primeiro jantar juntos">
                         </div>
-                        <div class="carousel-slide" data-date="Hoodies stolen!"
-                            data-caption="I learnt that all my hoodies are to be gone. I am happy! 🌿😊">
-                            <img src="./19.jpg" alt="Hoodies stolen!">
+                        <div class="carousel-slide" data-date="Hoodies stolen!" data-date-en="Hoodies stolen!" data-date-pt="Moletos roubados!"
+                            data-caption="I learnt that all my hoodies are to be gone. I am happy! 🌿😊" data-caption-en="I learnt that all my hoodies are to be gone. I am happy! 🌿😊" data-caption-pt="Descobri que todos os meus moletons vão sumir. E fico feliz! 🌿😊">
+                            <img src="./19.jpg" alt="Hoodies stolen!" data-alt-en="Hoodies stolen!" data-alt-pt="Moletos roubados!">
                         </div>
-                        <div class="carousel-slide" data-date="Bollywood Moment: Twirl Time"
-                            data-caption="Disclaimer: You are prettier than all bollywood movie stars combined.🎬✨">
+                        <div class="carousel-slide" data-date="Bollywood Moment: Twirl Time" data-date-en="Bollywood Moment: Twirl Time" data-date-pt="Momento Bollywood: hora de girar"
+                            data-caption="Disclaimer: You are prettier than all bollywood movie stars combined.🎬✨" data-caption-en="Disclaimer: You are prettier than all bollywood movie stars combined.🎬✨" data-caption-pt="Aviso: você é mais bonita do que todas as estrelas de Bollywood juntas. 🎬✨">
                             <video src="./20.mp4" autoplay loop muted playsinline controls
-                                aria-label="Bollywood Moment: Twirl Time"></video>
+                                aria-label="Bollywood Moment: Twirl Time" data-alt-en="Bollywood Moment: Twirl Time" data-alt-pt="Momento Bollywood: hora de girar"></video>
                         </div>
-                        <div class="carousel-slide" data-date="Cementing it!"
-                            data-caption="With blessing from our in-laws, cementing it forever.🎬✨">
+                        <div class="carousel-slide" data-date="Cementing it!" data-date-en="Cementing it!" data-date-pt="Cimentando tudo!"
+                            data-caption="With blessing from our in-laws, cementing it forever.🎬✨" data-caption-en="With blessing from our in-laws, cementing it forever.🎬✨" data-caption-pt="Com a bênção dos nossos sogros, cimentando para sempre. 🎬✨">
                             <video src="./21.jpg" autoplay loop muted playsinline controls
-                                aria-label="Cementing it!"></video>
+                                aria-label="Cementing it!" data-alt-en="Cementing it!" data-alt-pt="Cimentando tudo!"></video>
                         </div>
-                        <div class="carousel-slide" data-date="Villa Lobos Sunset"
-                            data-caption="Our first sunset picture together ✨">
+                        <div class="carousel-slide" data-date="Villa Lobos Sunset" data-date-en="Villa Lobos Sunset" data-date-pt="Pôr do sol no Villa Lobos"
+                            data-caption="Our first sunset picture together ✨" data-caption-en="Our first sunset picture together ✨" data-caption-pt="Nossa primeira foto do pôr do sol juntos ✨">
                             <video src="./22.jpg" autoplay loop muted playsinline controls
-                                aria-label="Villa Lobos Sunset"></video>
+                                aria-label="Villa Lobos Sunset" data-alt-en="Villa Lobos Sunset" data-alt-pt="Pôr do sol no Villa Lobos"></video>
                         </div>
-                        <div class="carousel-slide" data-date="Dream come true!"
-                            data-caption="One of the things I missed from the calls. It was a dream come true to watch you get ready. ✨">
+                        <div class="carousel-slide" data-date="Dream come true!" data-date-en="Dream come true!" data-date-pt="Sonho realizado!"
+                            data-caption="One of the things I missed from the calls. It was a dream come true to watch you get ready. ✨" data-caption-en="One of the things I missed from the calls. It was a dream come true to watch you get ready. ✨" data-caption-pt="Uma das coisas que eu sentia falta nas chamadas. Foi um sonho te ver se arrumando. ✨">
                             <video src="./23.jpg" autoplay loop muted playsinline controls
-                                aria-label="Dream come true!"></video>
+                                aria-label="Dream come true!" data-alt-en="Dream come true!" data-alt-pt="Sonho realizado!"></video>
                         </div>
-                        <div class="carousel-slide" data-date="First Fine Dining"
-                            data-caption="You did bring the 'Fine' in Fine Dining ✨">
+                        <div class="carousel-slide" data-date="First Fine Dining" data-date-en="First Fine Dining" data-date-pt="Primeiro fine dining"
+                            data-caption="You did bring the 'Fine' in Fine Dining ✨" data-caption-en="You did bring the 'Fine' in Fine Dining ✨" data-caption-pt="Você realmente trouxe o 'fine' no fine dining ✨">
                             <video src="./24.jpg" autoplay loop muted playsinline controls
-                                aria-label="First Fine Dining"></video>
+                                aria-label="First Fine Dining" data-alt-en="First Fine Dining" data-alt-pt="Primeiro fine dining"></video>
                         </div>
-                        <div class="carousel-slide" data-date="Paulista Magic"
-                            data-caption="Italian Renaissance painting lady in MASP. ✨">
+                        <div class="carousel-slide" data-date="Paulista Magic" data-date-en="Paulista Magic" data-date-pt="Magia na Paulista"
+                            data-caption="Italian Renaissance painting lady in MASP. ✨" data-caption-en="Italian Renaissance painting lady in MASP. ✨" data-caption-pt="A dama da pintura renascentista italiana no MASP. ✨">
                             <video src="./24.jpg" autoplay loop muted playsinline controls
-                                aria-label="Paulista Magic"></video>
+                                aria-label="Paulista Magic" data-alt-en="Paulista Magic" data-alt-pt="Magia na Paulista"></video>
                         </div>
                     </div>
-                    <button class="carousel-btn next" aria-label="Next bloom">›</button>
+                    <button class="carousel-btn next" aria-label="Next bloom" data-aria-en="Next bloom" data-aria-pt="Próximo momento">›</button>
                 </div>
 
-                <div class="carousel-dots" aria-label="Select bloom"></div>
+                <div class="carousel-dots" aria-label="Select bloom" data-aria-en="Select bloom" data-aria-pt="Selecionar momento"></div>
                 <div class="carousel-caption-block" aria-live="polite">
                     <div class="memory-date"></div>
                     <div class="memory-caption"></div>
@@ -1035,21 +1063,24 @@
         </div>
     </div>
 
-    <section class="audio-player" aria-label="Birthday song">
-        <h3>A Song For You 🎶</h3>
+    <section class="audio-player" aria-label="Birthday song" data-aria-en="Birthday song" data-aria-pt="Canção de aniversário">
+        <h3 data-en="A Song For You 🎶" data-pt="Uma canção para você 🎶">A Song For You 🎶</h3>
         <audio controls>
             <source src="./music.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
+            <span class="audio-fallback" data-en="Your browser does not support the audio element." data-pt="Seu navegador não suporta o elemento de áudio.">Your browser does not support the audio element.</span>
         </audio>
     </section>
 
     <section class="final-message">
-        <h2>Thank You for the Memories</h2>
-        <p>Every smile, every conversation, and every moment by your side means more to me than words can say. 💫<br>
-    You are my princess, my safe place, and the love of my life.<br>
-    As we build our future together, I’m endlessly grateful for your love, your support, and your beautiful heart. 🌸</p>
-        <p>I can’t wait to spend forever with you—loving you more with every day that passes. ✨</p>
-        <a href="#" class="goodbye-btn">Until We Meet Again 💝</a>
+        <h2 data-en="Thank You for the Memories" data-pt="Obrigado pelas memórias">Thank You for the Memories</h2>
+        <p data-en-html="Every smile, every conversation, and every moment by your side means more to me than words can say. 💫&lt;br&gt;You are my princess, my safe place, and the love of my life.&lt;br&gt;As we build our future together, I’m endlessly grateful for your love, your support, and your beautiful heart. 🌸"
+            data-pt-html="Cada sorriso, cada conversa e cada momento ao seu lado significam mais para mim do que palavras podem dizer. 💫&lt;br&gt;Você é minha princesa, meu lugar seguro e o amor da minha vida.&lt;br&gt;Enquanto construímos nosso futuro juntos, sou infinitamente grato pelo seu amor, pelo seu apoio e pelo seu coração lindo. 🌸">
+            Every smile, every conversation, and every moment by your side means more to me than words can say. 💫<br>
+            You are my princess, my safe place, and the love of my life.<br>
+            As we build our future together, I’m endlessly grateful for your love, your support, and your beautiful heart. 🌸
+        </p>
+        <p data-en="I can’t wait to spend forever with you—loving you more with every day that passes. ✨" data-pt="Mal posso esperar para passar a vida com você — amando você mais a cada dia que passa. ✨">I can’t wait to spend forever with you—loving you more with every day that passes. ✨</p>
+        <a href="#" class="goodbye-btn" data-en="Until We Meet Again 💝" data-pt="Até nos encontrarmos de novo 💝">Until We Meet Again 💝</a>
     </section>
 
     <div class="gift-overlay" aria-hidden="true">
@@ -1059,16 +1090,17 @@
                     <div class="lid-top"></div>
                     <div class="lid-ribbon"></div>
                 </div>
-                <div class="gift-message" aria-live="polite">
-                    <span class="letter">E</span>
-                    <span class="letter">u</span>
+                <div class="gift-message" aria-live="polite" data-en="I love you" data-pt="Eu te amo">
+                    <span class="letter">I</span>
                     <span class="letter"> </span>
-                    <span class="letter">t</span>
+                    <span class="letter">l</span>
+                    <span class="letter">o</span>
+                    <span class="letter">v</span>
                     <span class="letter">e</span>
                     <span class="letter"> </span>
-                    <span class="letter">a</span>
-                    <span class="letter">m</span>
+                    <span class="letter">y</span>
                     <span class="letter">o</span>
+                    <span class="letter">u</span>
                 </div>
                 <div class="box-body">
                     <div class="ribbon-vertical"></div>
@@ -1079,6 +1111,119 @@
         </div>
     </div>
     <script>
+        const LANGUAGE_KEY = 'birthdayLanguage';
+        const languageToggle = document.querySelector('.language-toggle');
+        const translatableElements = document.querySelectorAll('[data-en][data-pt]');
+        const htmlElements = document.querySelectorAll('[data-en-html][data-pt-html]');
+        const ariaElements = document.querySelectorAll('[data-aria-en][data-aria-pt]');
+        const mediaElements = document.querySelectorAll('[data-alt-en][data-alt-pt]');
+        const giftMessage = document.querySelector('.gift-message');
+        const carousels = document.querySelectorAll('.carousel-card');
+        const slides = document.querySelectorAll('.carousel-slide');
+        let currentLanguage = localStorage.getItem(LANGUAGE_KEY) || 'en';
+
+        const dotLabel = (index) => currentLanguage === 'pt'
+            ? `Ir para memória ${index + 1}`
+            : `Go to memory ${index + 1}`;
+
+        function updateToggleLabel() {
+            if (!languageToggle) return;
+            const isEnglish = currentLanguage === 'en';
+            languageToggle.textContent = isEnglish ? 'PT-BR' : 'EN';
+            languageToggle.setAttribute(
+                'aria-label',
+                isEnglish ? 'Mudar idioma para português brasileiro' : 'Switch language to English'
+            );
+            languageToggle.setAttribute('aria-pressed', currentLanguage === 'pt');
+        }
+
+        function updateGiftMessage(text) {
+            if (!giftMessage) return;
+            giftMessage.innerHTML = '';
+            Array.from(text).forEach((char) => {
+                const span = document.createElement('span');
+                span.className = 'letter';
+                span.textContent = char;
+                giftMessage.appendChild(span);
+            });
+        }
+
+        function updateDotLabels() {
+            carousels.forEach((carousel) => {
+                const dots = carousel.querySelectorAll('.carousel-dot');
+                dots.forEach((dot, index) => {
+                    dot.setAttribute('aria-label', dotLabel(index));
+                });
+            });
+        }
+
+        function applyLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem(LANGUAGE_KEY, lang);
+            document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+
+            translatableElements.forEach((element) => {
+                element.textContent = element.dataset[lang];
+            });
+
+            htmlElements.forEach((element) => {
+                const html = element.dataset[lang === 'pt' ? 'ptHtml' : 'enHtml'];
+                if (html) {
+                    element.innerHTML = html;
+                }
+            });
+
+            ariaElements.forEach((element) => {
+                const label = element.dataset[lang === 'pt' ? 'ariaPt' : 'ariaEn'];
+                if (label) {
+                    element.setAttribute('aria-label', label);
+                }
+            });
+
+            mediaElements.forEach((element) => {
+                const alt = element.dataset[lang === 'pt' ? 'altPt' : 'altEn'];
+                if (!alt) return;
+                if (element.tagName === 'IMG') {
+                    element.alt = alt;
+                } else {
+                    element.setAttribute('aria-label', alt);
+                }
+            });
+
+            slides.forEach((slide) => {
+                const date = slide.dataset[lang === 'pt' ? 'datePt' : 'dateEn'];
+                const caption = slide.dataset[lang === 'pt' ? 'captionPt' : 'captionEn'];
+                if (date) slide.dataset.date = date;
+                if (caption) slide.dataset.caption = caption;
+            });
+
+            carousels.forEach((carousel) => {
+                const memoryDate = carousel.dataset[lang === 'pt' ? 'memoryDatePt' : 'memoryDateEn'];
+                if (memoryDate) {
+                    carousel.dataset.memoryDate = memoryDate;
+                }
+                if (typeof carousel.goToSlide === 'function') {
+                    const currentIndex = Number(carousel.dataset.currentIndex || 0);
+                    carousel.goToSlide(currentIndex);
+                }
+            });
+
+            if (giftMessage) {
+                updateGiftMessage(giftMessage.dataset[lang]);
+            }
+
+            updateDotLabels();
+            updateToggleLabel();
+        }
+
+        if (languageToggle) {
+            languageToggle.addEventListener('click', () => {
+                applyLanguage(currentLanguage === 'en' ? 'pt' : 'en');
+            });
+        }
+
+        applyLanguage(currentLanguage);
+
         (function setupCelebrationBursts() {
             const layer = document.createElement('div');
             layer.className = 'celebration-layer';
@@ -1147,7 +1292,7 @@
                     const dot = document.createElement('button');
                     dot.className = 'carousel-dot';
                     dot.type = 'button';
-                    dot.setAttribute('aria-label', `Go to memory ${index + 1}`);
+                    dot.setAttribute('aria-label', dotLabel(index));
                     dot.addEventListener('click', () => goToSlide(index));
                     dotsContainer.appendChild(dot);
                 });
@@ -1157,6 +1302,7 @@
                 function goToSlide(index) {
                     const total = slides.length;
                     currentIndex = (index + total) % total;
+                    carousel.dataset.currentIndex = currentIndex;
                     track.style.transform = `translateX(-${currentIndex * 100}%)`;
                     dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === currentIndex));
 
@@ -1179,10 +1325,11 @@
                     if (Math.abs(diff) > 40) {
                         goToSlide(diff > 0 ? currentIndex - 1 : currentIndex + 1);
                     }
-            });
+                });
 
-            goToSlide(0);
-        });
+                goToSlide(0);
+                carousel.goToSlide = goToSlide;
+            });
         })();
 
         (function setupGiftBox() {

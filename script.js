@@ -5,6 +5,59 @@ document.addEventListener('mousemove', (e) => {
     cursor.style.top = e.clientY + 'px';
 });
 
+const LANGUAGE_KEY = 'birthdayLanguage';
+const languageToggle = document.querySelector('.language-toggle');
+const translatableElements = document.querySelectorAll('[data-en][data-pt]');
+const greetingElement = document.querySelector('.greeting');
+const greetingVariants = {
+    en: "Hey You Know What! You're the most adorable human I ever met! 💖",
+    pt: "Ei, sabe de uma coisa? Você é a pessoa mais adorável que já conheci! 💖"
+};
+let greetingText = '';
+let charIndex = 0;
+let typingTimeout;
+let currentLanguage = localStorage.getItem(LANGUAGE_KEY) || 'en';
+
+function updateToggleLabel() {
+    if (!languageToggle) return;
+    const isEnglish = currentLanguage === 'en';
+    languageToggle.textContent = isEnglish ? 'PT-BR' : 'EN';
+    languageToggle.setAttribute(
+        'aria-label',
+        isEnglish ? 'Mudar idioma para português brasileiro' : 'Switch language to English'
+    );
+    languageToggle.setAttribute('aria-pressed', currentLanguage === 'pt');
+}
+
+function startTyping() {
+    if (typingTimeout) {
+        clearTimeout(typingTimeout);
+    }
+    charIndex = 0;
+    if (greetingElement) {
+        greetingElement.textContent = '';
+    }
+    typeGreeting();
+}
+
+function applyLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem(LANGUAGE_KEY, lang);
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+    translatableElements.forEach((element) => {
+        element.textContent = element.dataset[lang];
+    });
+    greetingText = greetingVariants[lang];
+    startTyping();
+    updateToggleLabel();
+}
+
+if (languageToggle) {
+    languageToggle.addEventListener('click', () => {
+        applyLanguage(currentLanguage === 'en' ? 'pt' : 'en');
+    });
+}
+
 function setupCelebrationBursts() {
     const layer = document.createElement('div');
     layer.className = 'celebration-layer';
@@ -47,22 +100,14 @@ function setupCelebrationBursts() {
     });
 }
 
-// Typing effect for greeting
-const greetingText = "Hey You Know What! You're the most adorable human I ever met! 💖";
-const greetingElement = document.querySelector('.greeting');
-let charIndex = 0;
-
 // Subtitle animation
 const subtitle = document.querySelector('.subtitle');
 
 function typeGreeting() {
-    if (charIndex === 0) {
-        greetingElement.textContent = '';
-    }
     if (charIndex < greetingText.length) {
         greetingElement.textContent += greetingText.charAt(charIndex);
         charIndex++;
-        setTimeout(typeGreeting, 100);
+        typingTimeout = setTimeout(typeGreeting, 100);
     }
 }
 
@@ -91,6 +136,7 @@ function createFloating() {
 // Initialize animations
 window.addEventListener('load', () => {
     setupCelebrationBursts();
+    applyLanguage(currentLanguage);
 
     // Title animation
     gsap.to('h1', {
@@ -116,9 +162,6 @@ window.addEventListener('load', () => {
         y: -20,
         ease: "back.out"
     });
-
-    // Start typing effect
-    typeGreeting();
 
     // Create floating elements periodically
     setInterval(createFloating, 1000);

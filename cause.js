@@ -1,26 +1,55 @@
- // Reasons database
- const reasons = [
+// Reasons database
+const reasons = [
     {
-        text: "You are my greatest blessing, my love, and my safest place. I feel so incredibly lucky to be yours. 💖",
+        text: {
+            en: "You are my greatest blessing, my love, and my safest place. I feel so incredibly lucky to be yours. 💖",
+            pt: "Você é a minha maior bênção, meu amor, e o meu lugar seguro. Tenho tanta sorte de ser seu. 💖"
+        },
         emoji: "🌟",
         gif: "gif1.gif"
     },
     {
-        text: "May every day remind you of how deeply you’re loved, cherished, and admired by me. 🌸",
+        text: {
+            en: "May every day remind you of how deeply you’re loved, cherished, and admired by me. 🌸",
+            pt: "Que todos os dias te lembrem de como você é profundamente amada, querida e admirada por mim. 🌸"
+        },
         emoji: "💗",
         gif: "gif2.gif"
     },
     {
-        text: "Wishing you endless happiness, success, and all the beautiful dreams we’re building together. ✨ ",
+        text: {
+            en: "Wishing you endless happiness, success, and all the beautiful dreams we’re building together. ✨ ",
+            pt: "Desejo a você felicidade sem fim, sucesso e todos os lindos sonhos que estamos construindo juntos. ✨ "
+        },
         emoji: "💕",
         gif: "gif1.gif"
     },
     {
-        text: "Stay the amazing princess you are my love, my strength, my forever. I can’t wait to spend my life with you. 🥳 ",
+        text: {
+            en: "Stay the amazing princess you are my love, my strength, my forever. I can’t wait to spend my life with you. 🥳 ",
+            pt: "Continue sendo a princesa incrível que você é — meu amor, minha força, meu para sempre. Mal posso esperar para passar a vida com você. 🥳 "
+        },
         emoji: "🌟",
         gif: "gif2.gif"
     }
 ];
+
+const LANGUAGE_KEY = 'birthdayLanguage';
+const languageToggle = document.querySelector('.language-toggle');
+const translatableElements = document.querySelectorAll('[data-en][data-pt]');
+const languageContent = {
+    en: {
+        shuffleLabel: 'Click Here... 💕',
+        storyLabel: 'Enter Our Storylane 💫',
+        counter: (index, total) => `Reason ${index} of ${total}`
+    },
+    pt: {
+        shuffleLabel: 'Clique Aqui... 💕',
+        storyLabel: 'Entre na Nossa História 💫',
+        counter: (index, total) => `Razão ${index} de ${total}`
+    }
+};
+let currentLanguage = localStorage.getItem(LANGUAGE_KEY) || 'en';
 
 // State management
 let currentReasonIndex = 0;
@@ -30,6 +59,65 @@ const reasonCounter = document.querySelector('.reason-counter');
 let isTransitioning = false;
 
 setupCelebrationBursts();
+applyLanguage(currentLanguage);
+
+function updateToggleLabel() {
+    if (!languageToggle) return;
+    const isEnglish = currentLanguage === 'en';
+    languageToggle.textContent = isEnglish ? 'PT-BR' : 'EN';
+    languageToggle.setAttribute(
+        'aria-label',
+        isEnglish ? 'Mudar idioma para português brasileiro' : 'Switch language to English'
+    );
+    languageToggle.setAttribute('aria-pressed', currentLanguage === 'pt');
+}
+
+function updateReasonCounter() {
+    if (!reasonCounter) return;
+    if (currentReasonIndex > 0) {
+        reasonCounter.textContent = languageContent[currentLanguage].counter(currentReasonIndex, reasons.length);
+    } else {
+        reasonCounter.textContent = '';
+    }
+}
+
+function updateReasonCards() {
+    const cards = reasonsContainer?.querySelectorAll('.reason-card') || [];
+    cards.forEach((card) => {
+        const index = Number(card.dataset.reasonIndex);
+        const reason = reasons[index];
+        const text = card.querySelector('.reason-text');
+        if (text && reason) {
+            text.textContent = `${reason.emoji} ${reason.text[currentLanguage]}`;
+        }
+    });
+}
+
+function updateShuffleButtonLabel() {
+    if (!shuffleButton) return;
+    shuffleButton.textContent = shuffleButton.classList.contains('story-mode')
+        ? languageContent[currentLanguage].storyLabel
+        : languageContent[currentLanguage].shuffleLabel;
+}
+
+function applyLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem(LANGUAGE_KEY, lang);
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+    translatableElements.forEach((element) => {
+        element.textContent = element.dataset[lang];
+    });
+    updateShuffleButtonLabel();
+    updateReasonCounter();
+    updateReasonCards();
+    updateToggleLabel();
+}
+
+if (languageToggle) {
+    languageToggle.addEventListener('click', () => {
+        applyLanguage(currentLanguage === 'en' ? 'pt' : 'en');
+    });
+}
 
 function setupCelebrationBursts() {
     const layer = document.createElement('div');
@@ -74,13 +162,14 @@ function setupCelebrationBursts() {
 }
 
 // Create reason card with gif
-function createReasonCard(reason) {
+function createReasonCard(reason, reasonIndex) {
     const card = document.createElement('div');
     card.className = 'reason-card';
+    card.dataset.reasonIndex = reasonIndex;
 
     const text = document.createElement('div');
     text.className = 'reason-text';
-    text.innerHTML = `${reason.emoji} ${reason.text}`;
+    text.textContent = `${reason.emoji} ${reason.text[currentLanguage]}`;
 
     const gifOverlay = document.createElement('div');
     gifOverlay.className = 'gif-overlay';
@@ -105,13 +194,13 @@ function displayNewReason() {
     isTransitioning = true;
 
     if (currentReasonIndex < reasons.length) {
-        const card = createReasonCard(reasons[currentReasonIndex]);
+        const reasonIndex = currentReasonIndex;
+        const card = createReasonCard(reasons[reasonIndex], reasonIndex);
         reasonsContainer.appendChild(card);
 
         // Update counter
-        reasonCounter.textContent = `Reason ${currentReasonIndex + 1} of ${reasons.length}`;
-
         currentReasonIndex++;
+        updateReasonCounter();
 
         // Check if we should transform the button
         if (currentReasonIndex === reasons.length) {
@@ -120,7 +209,7 @@ function displayNewReason() {
                 duration: 0.5,
                 ease: "elastic.out",
                 onComplete: () => {
-                    shuffleButton.textContent = "Enter Our Storylane 💫";
+                    shuffleButton.textContent = languageContent[currentLanguage].storyLabel;
                     shuffleButton.classList.add('story-mode');
                     shuffleButton.addEventListener('click', () => {
                         gsap.to('body', {

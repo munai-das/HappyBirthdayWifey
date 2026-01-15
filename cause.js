@@ -1,22 +1,22 @@
  // Reasons database
  const reasons = [
-    { 
-        text: "You’re such a kind and wonderful person, and I feel lucky to share such a good bond with you. 💖", 
+    {
+        text: "You are my greatest blessing, my love, and my safest place. I feel so incredibly lucky to be yours. 💖",
         emoji: "🌟",
         gif: "gif1.gif"
     },
-    { 
-        text: "May your day be filled with love, laughter, and endless joy. 🌸 ", 
+    {
+        text: "May every day remind you of how deeply you’re loved, cherished, and admired by me. 🌸",
         emoji: "💗",
         gif: "gif2.gif"
     },
-    { 
-        text: "Wishing you success, happiness, and everything your heart desires. ✨ ", 
+    {
+        text: "Wishing you endless happiness, success, and all the beautiful dreams we’re building together. ✨ ",
         emoji: "💕",
         gif: "gif1.gif"
     },
-    { 
-        text: "Stay the amazing girl you are—always spreading positivity around. Have the happiest year ahead! 🥳 ", 
+    {
+        text: "Stay the amazing princess you are my love, my strength, my forever. I can’t wait to spend my life with you. 🥳 ",
         emoji: "🌟",
         gif: "gif2.gif"
     }
@@ -77,18 +77,18 @@ function setupCelebrationBursts() {
 function createReasonCard(reason) {
     const card = document.createElement('div');
     card.className = 'reason-card';
-    
+
     const text = document.createElement('div');
     text.className = 'reason-text';
     text.innerHTML = `${reason.emoji} ${reason.text}`;
-    
+
     const gifOverlay = document.createElement('div');
     gifOverlay.className = 'gif-overlay';
     gifOverlay.innerHTML = `<img src="${reason.gif}" alt="Friendship Memory">`;
-    
+
     card.appendChild(text);
     card.appendChild(gifOverlay);
-    
+
     gsap.from(card, {
         opacity: 0,
         y: 50,
@@ -107,10 +107,10 @@ function displayNewReason() {
     if (currentReasonIndex < reasons.length) {
         const card = createReasonCard(reasons[currentReasonIndex]);
         reasonsContainer.appendChild(card);
-        
+
         // Update counter
         reasonCounter.textContent = `Reason ${currentReasonIndex + 1} of ${reasons.length}`;
-        
+
         currentReasonIndex++;
 
         // Check if we should transform the button
@@ -137,7 +137,7 @@ function displayNewReason() {
 
         // Create floating elements
         createFloatingElement();
-        
+
         setTimeout(() => {
             isTransitioning = false;
         }, 500);
